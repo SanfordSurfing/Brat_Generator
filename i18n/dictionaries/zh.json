@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "title": "Brat Generator - 制作你的 Brat 风格图片",
+    "description": "免费在线工具，一键生成 Charlie XCX Brat 专辑风格的图片。输入文字，立即下载专属封面。"
+  },
+  "home": {
+    "title": "Brat Generator",
+    "subtitle": "制作你的专属 Charlie XCX Brat 风格图片",
+    "inputLabel": "输入你的文字",
+    "inputPlaceholder": "输入任何文字...",
+    "inputHint": "提示：输入多行文字会自动换行显示",
+    "previewTitle": "预览",
+    "downloadButton": "下载图片",
+    "footer": "灵感来自 Charlie XCX 的 Brat 专辑"
+  }
+}
+

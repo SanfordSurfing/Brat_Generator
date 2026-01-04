@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "title": "Brat Generator - Create Your Brat Style Image",
+    "description": "Free online tool to generate Charlie XCX Brat album style images. Enter text and download instantly."
+  },
+  "home": {
+    "title": "Brat Generator",
+    "subtitle": "Create Your Own Charlie XCX Brat Style Image",
+    "inputLabel": "Enter Your Text",
+    "inputPlaceholder": "Enter any text...",
+    "inputHint": "Tip: Press Enter to create new lines",
+    "previewTitle": "Preview",
+    "downloadButton": "Download Image",
+    "footer": "Inspired by Charlie XCX's Brat Album"
+  }
+}
+
