@@ -62,3 +62,26 @@ input, textarea {
   border-width: 0;
 }
 
+/* 导航栏响应式样式 */
+.logo-text {
+  display: block;
+}
+
+.nav-link-text {
+  display: inline;
+}
+
+/* 小屏幕：隐藏 Logo 文字，只显示图标 */
+@media (max-width: 640px) {
+  .logo-text {
+    display: none;
+  }
+}
+
+/* 平板及以下：隐藏导航链接文字，只显示图标 */
+@media (max-width: 768px) {
+  .nav-link-text {
+    display: none;
+  }
+}
+

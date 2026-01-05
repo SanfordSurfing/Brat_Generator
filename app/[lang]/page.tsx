@@ -88,29 +88,6 @@ export default async function Home({
         color: '#6e6e73'
       }}>
         <p>{dict.home.footer}</p>
-        
-        {/* 导航链接 */}
-        <nav style={{ marginTop: '16px', display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a 
-            href={`/${params.lang}/gallery`}
-            style={{
-              color: '#0071e3',
-              textDecoration: 'none'
-            }}
-          >
-            Gallery
-          </a>
-          <span style={{ color: '#d2d2d7' }}>|</span>
-          <a 
-            href={`/${params.lang}/brat-color`}
-            style={{
-              color: '#0071e3',
-              textDecoration: 'none'
-            }}
-          >
-            Brat Color
-          </a>
-        </nav>
       </footer>
     </main>
     </>

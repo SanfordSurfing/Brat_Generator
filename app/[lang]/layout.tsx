@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { getDictionary } from '@/i18n/get-dictionary'
 import { languageCodes, type Language } from '@/i18n/config'
+import Navigation from '@/components/Navigation'
 import '../globals.css'
 
 // 生成静态路由参数（告诉 Next.js 支持哪些语言）
@@ -52,8 +53,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang={params.lang}>
-      <body>
-        {children}
+      <body style={{ margin: 0, padding: 0 }}>
+        {/* 全局顶部导航栏 */}
+        <Navigation lang={params.lang} />
+        
+        {/* 主内容区域（添加 padding-top 避免被导航栏遮挡） */}
+        <div style={{ paddingTop: '64px', minHeight: '100vh' }}>
+          {children}
+        </div>
       </body>
     </html>
   )
