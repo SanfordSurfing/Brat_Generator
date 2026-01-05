@@ -1,6 +1,7 @@
 import { getDictionary } from '@/i18n/get-dictionary'
 import { type Language } from '@/i18n/config'
 import BratGenerator from '@/components/BratGenerator'
+import SEOContent from '@/components/SEOContent'
 
 // 首页组件（支持多语言）
 export default async function Home({
@@ -78,6 +79,9 @@ export default async function Home({
       {/* Brat 生成器组件（传入翻译） */}
       <BratGenerator dict={dict.home} />
 
+      {/* SEO 内容区块 */}
+      <SEOContent lang={params.lang} />
+
       {/* 页脚 */}
       <footer style={{
         marginTop: '64px',
@@ -87,7 +91,18 @@ export default async function Home({
         fontSize: '14px',
         color: '#6e6e73'
       }}>
-        <p>{dict.home.footer}</p>
+        <p style={{ marginBottom: '16px' }}>{dict.home.footer}</p>
+        
+        {/* 页脚导航 */}
+        <nav style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <a href={`/${params.lang}/privacy`} style={{ color: '#0071e3', textDecoration: 'none' }}>
+            {params.lang === 'zh' ? '隐私政策' : 'Privacy Policy'}
+          </a>
+          <span style={{ color: '#d2d2d7' }}>|</span>
+          <a href={`/${params.lang}/cookies`} style={{ color: '#0071e3', textDecoration: 'none' }}>
+            {params.lang === 'zh' ? 'Cookies 政策' : 'Cookies Policy'}
+          </a>
+        </nav>
       </footer>
     </main>
     </>

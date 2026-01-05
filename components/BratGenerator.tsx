@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { generateBratImage } from '@/utils/imageGenerator'
+import confetti from 'canvas-confetti'
 
 // 翻译类型定义
 type BratGeneratorDict = {
@@ -70,6 +71,13 @@ export default function BratGenerator({ dict }: { dict: BratGeneratorDict }) {
       }
       
       setUploadSuccess(true)
+      
+      // 🎉 触发彩带特效
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      })
       
       // 3秒后隐藏成功提示
       setTimeout(() => {

@@ -14,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '',  // 首页
     '/brat-color',  // Brat Color 页面
     '/gallery',  // Gallery 页面
+    '/privacy',  // 隐私政策
+    '/cookies',  // Cookies 政策
   ]
   
   // 为每个语言和路由生成 sitemap 条目

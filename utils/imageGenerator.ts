@@ -180,11 +180,9 @@ export function generateBratImage(text: string, canvas: HTMLCanvasElement): stri
   allLines.forEach((line, index) => {
     const y = startY + index * lineHeight
     
-    // 转换为小写（Brat 风格）
-    const lowerCaseLine = line.toLowerCase()
-    
     // 绘制文字（水平居中由 textAlign: 'center' 实现）
-    ctx.fillText(lowerCaseLine, centerX, y)
+    // 保留用户输入的大小写，不再强制转换为小写
+    ctx.fillText(line, centerX, y)
   })
 
   // 7. 将 Canvas 转换为图片 URL
