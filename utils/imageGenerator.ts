@@ -24,8 +24,30 @@ const BRAT_CONFIG = {
   // 字体模糊效果（官方使用 2px 模糊）
   textBlur: 2,
   
-  // 内边距
-  padding: 80
+  // 内边距（尽可能窄，营造紧凑感）
+  padding: 20
+}
+
+/**
+ * 在单词之间随机插入额外的空格，营造"疯狂"的视觉效果
+ * @param text - 要处理的文本
+ * @returns 添加了随机空格的文本
+ */
+function addRandomSpaces(text: string): string {
+  const words = text.split(' ')
+  const result: string[] = []
+  
+  for (let i = 0; i < words.length; i++) {
+    result.push(words[i])
+    
+    // 在单词后面随机添加 0-3 个额外空格（除了最后一个单词）
+    if (i < words.length - 1) {
+      const randomSpaces = Math.floor(Math.random() * 4) // 0-3 个额外空格
+      result.push(' '.repeat(1 + randomSpaces)) // 至少1个空格 + 随机空格
+    }
+  }
+  
+  return result.join('')
 }
 
 /**
@@ -88,55 +110,58 @@ export function generateBratImage(text: string, canvas: HTMLCanvasElement): stri
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
   
-  // 3. 处理用户输入的换行，并准备进行自动换行
+  // 3. 处理用户输入的换行
   const userLines = text.split('\n').filter(line => line.trim())
   
-  // 先用初始字体大小测量文本（用于确定是否需要自动换行）
-  let fontSize = canvas.height / 3  // 初始字体大小
-  ctx.font = `${BRAT_CONFIG.fontWeight} ${fontSize}px ${BRAT_CONFIG.fontFamily}`
+  // 为每一行添加随机空格，营造"疯狂"的效果
+  const crazyLines = userLines.map(line => addRandomSpaces(line))
   
-  // 计算可用宽度（减去左右 padding）
-  const maxWidth = canvas.width - (BRAT_CONFIG.padding * 2)
-  
-  // 对每一行进行自动换行处理
+  // 4. 智能计算字体大小：优先换行，只有溢出画布时才缩小字号
+  // 从一个较大的字体开始尝试
+  let fontSize = canvas.height / 3  // 初始字体大小（约 333px）
+  const minFontSize = 40  // 最小字体限制
+  const maxWidth = canvas.width - (BRAT_CONFIG.padding * 2)  // 可用宽度
+  const maxHeight = canvas.height - (BRAT_CONFIG.padding * 2)  // 可用高度
   let allLines: string[] = []
-  for (const line of userLines) {
-    const wrappedLines = wrapText(ctx, line, maxWidth)
-    allLines = allLines.concat(wrappedLines)
+  let totalHeight = 0
+  let lineHeight = 0
+  
+  // 循环：尝试当前字号，如果溢出就缩小字号重试
+  while (fontSize >= minFontSize) {
+    // 设置当前字号
+    ctx.font = `${BRAT_CONFIG.fontWeight} ${fontSize}px ${BRAT_CONFIG.fontFamily}`
+    
+    // 进行自动换行处理
+    allLines = []
+    for (const line of crazyLines) {
+      const wrappedLines = wrapText(ctx, line, maxWidth)
+      allLines = allLines.concat(wrappedLines)
+    }
+    
+    // 如果没有文本，至少显示一行
+    if (allLines.length === 0) {
+      allLines = ['']
+      break
+    }
+    
+    // 计算总高度（line-height = font-size）
+    lineHeight = fontSize * 1.0
+    totalHeight = allLines.length * lineHeight
+    
+    // 如果高度合适，就使用这个字号
+    if (totalHeight <= maxHeight) {
+      break
+    }
+    
+    // 高度溢出，缩小字号（每次减少 5%）
+    fontSize = fontSize * 0.95
   }
   
-  // 如果没有文本，至少显示一行
-  if (allLines.length === 0) {
-    allLines = ['']
-  }
+  // 确保字号不低于最小值
+  fontSize = Math.max(fontSize, minFontSize)
   
-  const lineCount = allLines.length
-  
-  // 4. 根据最终行数自适应字体大小
-  // - 当行数为1时，字体高度约为画布高度的 1/3
-  // - 多行时，根据行数递减
-  if (lineCount === 1) {
-    fontSize = canvas.height / 3  // 约 333px
-  } else if (lineCount === 2) {
-    fontSize = canvas.height / 4  // 约 250px
-  } else if (lineCount === 3) {
-    fontSize = canvas.height / 5  // 约 200px
-  } else if (lineCount === 4) {
-    fontSize = canvas.height / 6.5  // 约 153px
-  } else {
-    // 超过4行时，进一步缩小字体
-    fontSize = canvas.height / (lineCount * 1.5)
-  }
-  
-  // 重新设置字体（使用最终计算的字体大小）
+  // 最终设置字体
   ctx.font = `${BRAT_CONFIG.fontWeight} ${fontSize}px ${BRAT_CONFIG.fontFamily}`
-  
-  // 使用新字体大小重新进行自动换行
-  allLines = []
-  for (const line of userLines) {
-    const wrappedLines = wrapText(ctx, line, maxWidth)
-    allLines = allLines.concat(wrappedLines)
-  }
   
   // 5. 应用高斯模糊效果（官方使用 2px 模糊）
   ctx.filter = `blur(${BRAT_CONFIG.textBlur}px)`
@@ -146,8 +171,8 @@ export function generateBratImage(text: string, canvas: HTMLCanvasElement): stri
   const centerY = canvas.height / 2
   
   // line-height 与 font-size 相同（与官方一致）
-  const lineHeight = fontSize * 1.0
-  const totalHeight = allLines.length * lineHeight
+  lineHeight = fontSize * 1.0
+  totalHeight = allLines.length * lineHeight
   
   // 计算起始 Y 坐标（垂直居中）
   const startY = centerY - (totalHeight / 2) + (lineHeight / 2)
