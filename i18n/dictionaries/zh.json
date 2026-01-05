@@ -12,6 +12,24 @@
     "previewTitle": "预览",
     "downloadButton": "下载图片",
     "footer": "灵感来自 Charlie XCX 的 Brat 专辑"
+  },
+  "breadcrumb": {
+    "home": "首页",
+    "bratColor": "Brat 颜色"
+  },
+  "bratColor": {
+    "metaTitle": "Brat 颜色 #8ACE00 - 官方 Brat 绿色色值",
+    "metaDescription": "了解标志性的 Brat 绿色。获取 Charlie XCX Brat 专辑经典颜色的 HEX #8ACE00、RGB 和 HSL 色值。",
+    "title": "Brat 颜色",
+    "subtitle": "Charlie XCX Brat 专辑的标志性绿色",
+    "aboutTitle": "关于 Brat 绿",
+    "aboutContent": [
+      "Charlie XCX 的 Brat 专辑采用了标志性的亮绿色（#8ACE00），这个颜色在流行文化中已经成为了极具辨识度的视觉符号。",
+      "这种充满活力的荧光绿代表了 Brat 美学中大胆、自信和不拘一格的能量。它在社交媒体、粉丝艺术和互联网文化中被广泛使用。",
+      "这个颜色的特点是高饱和度和高亮度，使其具有叛逆和俏皮的氛围，完美地捕捉了专辑的精神气质。",
+      "使用这些精确的色值来创作你自己的 Brat 风格设计和图形吧！"
+    ],
+    "backToHome": "返回生成器"
   }
 }
 

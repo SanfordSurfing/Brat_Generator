@@ -12,6 +12,24 @@
     "previewTitle": "Preview",
     "downloadButton": "Download Image",
     "footer": "Inspired by Charlie XCX's Brat Album"
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "bratColor": "Brat Color"
+  },
+  "bratColor": {
+    "metaTitle": "Brat Color #8ACE00 - Official Brat Green Color Code",
+    "metaDescription": "Discover the iconic Brat green color. Get HEX #8ACE00, RGB and HSL values for Charlie XCX's Brat album signature color.",
+    "title": "Brat Color",
+    "subtitle": "The iconic green color from Charlie XCX's Brat album",
+    "aboutTitle": "About Brat Green",
+    "aboutContent": [
+      "The Brat album by Charlie XCX features a signature bright green color (#8ACE00) that has become instantly recognizable in pop culture.",
+      "This vibrant lime green represents the bold, confident, and unapologetic energy of the Brat aesthetic. It's been widely adopted across social media, fan art, and internet culture.",
+      "The color is characterized by high saturation and brightness, making it stand out with a rebellious and playful vibe that perfectly captures the album's spirit.",
+      "Use these exact color values to create your own Brat-inspired designs and graphics!"
+    ],
+    "backToHome": "Back to Generator"
   }
 }
 

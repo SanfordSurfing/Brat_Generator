@@ -20,6 +20,10 @@ export default function BratGenerator({ dict }: { dict: BratGeneratorDict }) {
   // 状态管理：生成的图片 URL
   const [imageUrl, setImageUrl] = useState<string | null>(null)
   
+  // 状态管理：上传状态
+  const [isUploading, setIsUploading] = useState(false)
+  const [uploadSuccess, setUploadSuccess] = useState(false)
+  
   // Canvas 引用：用于绘制图片
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -40,6 +44,43 @@ export default function BratGenerator({ dict }: { dict: BratGeneratorDict }) {
     link.download = `brat-${text.substring(0, 20)}.png`
     link.href = imageUrl
     link.click()
+  }
+
+  // 上传图片到 Gallery
+  const handleUpload = async () => {
+    if (!imageUrl || !text.trim()) return
+    
+    setIsUploading(true)
+    setUploadSuccess(false)
+    
+    try {
+      const response = await fetch('/api/images', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          text: text.trim(),
+          image_url: imageUrl,
+        }),
+      })
+      
+      if (!response.ok) {
+        throw new Error('Upload failed')
+      }
+      
+      setUploadSuccess(true)
+      
+      // 3秒后隐藏成功提示
+      setTimeout(() => {
+        setUploadSuccess(false)
+      }, 3000)
+    } catch (error) {
+      console.error('Upload error:', error)
+      alert('Upload failed. Please try again.')
+    } finally {
+      setIsUploading(false)
+    }
   }
 
   return (
@@ -126,7 +167,8 @@ export default function BratGenerator({ dict }: { dict: BratGeneratorDict }) {
           }}>
             <img 
               src={imageUrl} 
-              alt={`Brat 风格图片：${text}`}
+              alt={`Brat style image with text: ${text.substring(0, 100)}`}
+              title={`Brat Generator - ${text.substring(0, 50)}`}
               style={{
                 maxWidth: '100%',
                 height: 'auto',
@@ -136,26 +178,71 @@ export default function BratGenerator({ dict }: { dict: BratGeneratorDict }) {
             />
           </div>
 
-          {/* 下载按钮 */}
-          <button
-            onClick={handleDownload}
-            style={{
-              width: '100%',
-              padding: '16px 32px',
-              fontSize: '17px',
-              fontWeight: '600',
-              color: 'white',
-              background: '#0071e3',
-              borderRadius: '12px',
-              boxShadow: '0 2px 8px rgba(0, 113, 227, 0.3)'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.background = '#0077ED'}
-            onMouseLeave={(e) => e.currentTarget.style.background = '#0071e3'}
-            onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
-            onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
-          >
-            {dict.downloadButton}
-          </button>
+          {/* 按钮组 */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '16px'
+          }}>
+            {/* 下载按钮 */}
+            <button
+              onClick={handleDownload}
+              style={{
+                padding: '16px 32px',
+                fontSize: '17px',
+                fontWeight: '600',
+                color: 'white',
+                background: '#0071e3',
+                border: 'none',
+                borderRadius: '12px',
+                boxShadow: '0 2px 8px rgba(0, 113, 227, 0.3)',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.background = '#0077ED'}
+              onMouseLeave={(e) => e.currentTarget.style.background = '#0071e3'}
+              onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
+              onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            >
+              {dict.downloadButton}
+            </button>
+
+            {/* 上传按钮 */}
+            <button
+              onClick={handleUpload}
+              disabled={isUploading}
+              style={{
+                padding: '16px 32px',
+                fontSize: '17px',
+                fontWeight: '600',
+                color: 'white',
+                background: uploadSuccess ? '#34C759' : (isUploading ? '#6e6e73' : '#8ACE00'),
+                border: 'none',
+                borderRadius: '12px',
+                boxShadow: uploadSuccess ? '0 2px 8px rgba(52, 199, 89, 0.3)' : '0 2px 8px rgba(138, 206, 0, 0.3)',
+                cursor: isUploading ? 'not-allowed' : 'pointer',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                if (!isUploading && !uploadSuccess) {
+                  e.currentTarget.style.background = '#9ADE00'
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isUploading && !uploadSuccess) {
+                  e.currentTarget.style.background = '#8ACE00'
+                }
+              }}
+              onMouseDown={(e) => {
+                if (!isUploading) {
+                  e.currentTarget.style.transform = 'scale(0.98)'
+                }
+              }}
+              onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            >
+              {uploadSuccess ? '✓ Uploaded!' : (isUploading ? 'Uploading...' : 'Upload to Gallery')}
+            </button>
+          </div>
         </div>
       )}
 
