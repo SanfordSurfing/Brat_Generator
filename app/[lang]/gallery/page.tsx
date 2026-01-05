@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import { Locale } from '@/i18n/config'
 import { getImages } from '@/lib/supabase-server'
-import LikeButton from '@/components/LikeButton'
+import ImageCard from '@/components/ImageCard'
 import { getDictionary } from '@/i18n/get-dictionary'
 
 // 生成页面元数据（SEO）
@@ -144,65 +144,14 @@ export default async function GalleryPage({
             gap: '24px'
           }}>
             {images.map((image) => (
-              <div
+              <ImageCard
                 key={image.id}
-                style={{
-                  background: 'white',
-                  borderRadius: '18px',
-                  overflow: 'hidden',
-                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-                }}
-                onMouseEnter={(e: any) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)'
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.12)'
-                }}
-                onMouseLeave={(e: any) => {
-                  e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.08)'
-                }}
-              >
-                {/* 图片 */}
-                <a href={`/${params.lang}/gallery/${image.id}`}>
-                  <img
-                    src={image.image_url}
-                    alt={`Brat style image with text: ${image.text}`}
-                    loading="lazy"
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                      display: 'block'
-                    }}
-                  />
-                </a>
-
-                {/* 信息和点赞 */}
-                <div style={{
-                  padding: '16px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  gap: '12px'
-                }}>
-                  <div style={{
-                    fontSize: '14px',
-                    color: '#6e6e73',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap',
-                    flex: 1
-                  }}>
-                    {image.text.substring(0, 30)}{image.text.length > 30 ? '...' : ''}
-                  </div>
-                  
-                  {/* 客户端点赞按钮 */}
-                  <LikeButton 
-                    imageId={image.id} 
-                    initialLikes={image.likes}
-                    compact={true}
-                  />
-                </div>
-              </div>
+                id={image.id}
+                imageUrl={image.image_url}
+                text={image.text}
+                likes={image.likes}
+                lang={params.lang}
+              />
             ))}
           </div>
         )}
