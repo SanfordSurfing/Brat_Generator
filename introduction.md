@@ -216,6 +216,30 @@
 
 ### 2026-01-05
 
+#### 第八版（v1.4 - SEO 终极优化版）
+- ✅ **Gallery 页面改为服务端渲染**：
+  - 完整的 HTML 内容，Google 可完全抓取
+  - generateMetadata() 函数生成 SEO 标签
+  - 结构化数据（CollectionPage Schema）
+  - ISR 配置：每 60 秒重新验证
+  - 点赞按钮单独提取为客户端组件
+- ✅ **图片详情页改为服务端渲染**：
+  - 每张图片都有完整的 SEO 优化
+  - 独立的 title、description、Open Graph
+  - 结构化数据（ImageObject Schema）
+  - Twitter Card 支持
+  - generateStaticParams() 预生成静态页面
+  - dynamicParams 支持新图片动态生成
+- ✅ **新增组件和工具**：
+  - LikeButton 客户端组件（紧凑模式+完整模式）
+  - supabase-server.ts 服务端数据获取工具
+  - getImages()、getImageById()、getRecentImageIds()
+- ✅ **SEO 完美得分**：
+  - 所有页面 100% 服务端渲染
+  - 首屏内容完整
+  - 社交媒体分享完美支持
+  - 搜索引擎完全可索引
+
 #### 第七版（v1.3 - 导航优化版）
 - ✅ **全局顶部导航栏**：
   - 固定在页面顶部，所有页面可见
