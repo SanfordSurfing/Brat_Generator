@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { useParams, useRouter } from 'next/navigation'
 import { generateBratImage } from '@/utils/imageGenerator'
 import confetti from 'canvas-confetti'
 
@@ -11,10 +12,19 @@ type BratGeneratorDict = {
   inputHint: string
   previewTitle: string
   downloadButton: string
+  uploadButton: string
+  uploading: string
+  uploadSuccess: string
+  viewInGallery: string
 }
 
 // Brat 图片生成器组件（支持多语言）
 export default function BratGenerator({ dict }: { dict: BratGeneratorDict }) {
+  // Next.js hooks
+  const params = useParams()
+  const router = useRouter()
+  const lang = params.lang as string
+  
   // 状态管理：用户输入的文本
   const [text, setText] = useState('brat')
   
@@ -229,7 +239,8 @@ export default function BratGenerator({ dict }: { dict: BratGeneratorDict }) {
                 borderRadius: '12px',
                 boxShadow: uploadSuccess ? '0 2px 8px rgba(52, 199, 89, 0.3)' : '0 2px 8px rgba(138, 206, 0, 0.3)',
                 cursor: isUploading ? 'not-allowed' : 'pointer',
-                transition: 'all 0.2s ease'
+                transition: 'all 0.2s ease',
+                marginBottom: uploadSuccess ? '12px' : '0'
               }}
               onMouseEnter={(e) => {
                 if (!isUploading && !uploadSuccess) {
@@ -248,8 +259,37 @@ export default function BratGenerator({ dict }: { dict: BratGeneratorDict }) {
               }}
               onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
             >
-              {uploadSuccess ? '✓ Uploaded!' : (isUploading ? 'Uploading...' : 'Upload to Gallery')}
+              {uploadSuccess ? dict.uploadSuccess : (isUploading ? dict.uploading : dict.uploadButton)}
             </button>
+            
+            {/* 上传成功后显示"查看画廊"链接 */}
+            {uploadSuccess && (
+              <button
+                onClick={() => router.push(`/${lang}/gallery`)}
+                style={{
+                  width: '100%',
+                  padding: '12px 24px',
+                  fontSize: '15px',
+                  fontWeight: '600',
+                  color: '#0071e3',
+                  background: 'rgba(0, 113, 227, 0.1)',
+                  border: 'none',
+                  borderRadius: '12px',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(0, 113, 227, 0.2)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(0, 113, 227, 0.1)'
+                }}
+                onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
+                onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              >
+                {dict.viewInGallery} →
+              </button>
+            )}
           </div>
         </div>
       )}

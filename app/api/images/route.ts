@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { supabase } from '@/lib/supabase'
 
 // GET - 获取所有图片（按点赞数排序）
@@ -44,6 +45,12 @@ export async function POST(request: NextRequest) {
       console.error('Supabase error:', error)
       return NextResponse.json({ error: error.message }, { status: 500 })
     }
+    
+    // 🔄 立即刷新 Gallery 页面缓存，让用户能看到新上传的图片
+    // 清除所有语言版本的 Gallery 缓存
+    revalidatePath('/[lang]/gallery', 'page')
+    revalidatePath('/en/gallery', 'page')
+    revalidatePath('/zh/gallery', 'page')
     
     return NextResponse.json({ data }, { status: 201 })
   } catch (error) {

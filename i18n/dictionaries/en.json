@@ -11,6 +11,10 @@
     "inputHint": "Tip: Press Enter to create new lines",
     "previewTitle": "Preview",
     "downloadButton": "Download Image",
+    "uploadButton": "Upload to Gallery",
+    "uploading": "Uploading...",
+    "uploadSuccess": "✓ Uploaded!",
+    "viewInGallery": "View in Gallery",
     "footer": "Inspired by Charlie XCX's Brat Album"
   },
   "breadcrumb": {

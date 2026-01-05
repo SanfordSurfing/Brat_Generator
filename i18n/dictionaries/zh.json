@@ -11,6 +11,10 @@
     "inputHint": "提示：输入多行文字会自动换行显示",
     "previewTitle": "预览",
     "downloadButton": "下载图片",
+    "uploadButton": "上传到画廊",
+    "uploading": "上传中...",
+    "uploadSuccess": "✓ 上传成功！",
+    "viewInGallery": "查看画廊",
     "footer": "灵感来自 Charlie XCX 的 Brat 专辑"
   },
   "breadcrumb": {

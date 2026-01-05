@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { supabase } from '@/lib/supabase'
 
 // POST - 给图片点赞
@@ -33,6 +34,17 @@ export async function POST(
       console.error('Update error:', error)
       return NextResponse.json({ error: error.message }, { status: 500 })
     }
+    
+    // 🔄 刷新 Gallery 页面和图片详情页缓存
+    // Gallery 页面需要刷新（因为排序可能改变）
+    revalidatePath('/[lang]/gallery', 'page')
+    revalidatePath('/en/gallery', 'page')
+    revalidatePath('/zh/gallery', 'page')
+    
+    // 图片详情页需要刷新（显示新的点赞数）
+    revalidatePath(`/[lang]/gallery/${id}`, 'page')
+    revalidatePath(`/en/gallery/${id}`, 'page')
+    revalidatePath(`/zh/gallery/${id}`, 'page')
     
     return NextResponse.json({ data }, { status: 200 })
   } catch (error) {
