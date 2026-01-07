@@ -3,6 +3,9 @@ import { locales } from '@/i18n/config'
 import { getImages } from '@/lib/supabase-server'
 
 // 动态生成 sitemap.xml
+// 设置重新验证时间：每5分钟更新一次
+export const revalidate = 300 // 300秒 = 5分钟
+
 // Next.js 会在每次请求 sitemap.xml 时调用这个函数（动态路由）
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 获取网站基础 URL
