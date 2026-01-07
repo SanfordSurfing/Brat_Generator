@@ -42,7 +42,9 @@ export const config = {
   // - _next/static（静态文件）
   // - _next/image（图片优化）
   // - favicon.ico（网站图标）
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
+  // - sitemap.xml（站点地图）
+  // - robots.txt（爬虫规则）
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)']
 }
 
 
