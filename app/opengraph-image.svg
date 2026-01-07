@@ -1,0 +1,40 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Brat 绿色背景 -->
+  <rect width="1200" height="630" fill="#8ACE00"/>
+  
+  <!-- 大写字母 B -->
+  <text 
+    x="200" 
+    y="315" 
+    dominant-baseline="central" 
+    text-anchor="start" 
+    font-family="Arial, Helvetica, sans-serif" 
+    font-size="180" 
+    font-weight="bold"
+    fill="#000000"
+    style="font-stretch: condensed;">B</text>
+  
+  <!-- Brat Generator 文字 -->
+  <text 
+    x="380" 
+    y="280" 
+    dominant-baseline="central" 
+    text-anchor="start" 
+    font-family="Arial, Helvetica, sans-serif" 
+    font-size="80" 
+    font-weight="500"
+    fill="#000000"
+    style="font-stretch: condensed;">brat</text>
+  
+  <text 
+    x="380" 
+    y="360" 
+    dominant-baseline="central" 
+    text-anchor="start" 
+    font-family="Arial, Helvetica, sans-serif" 
+    font-size="48" 
+    font-weight="400"
+    fill="#000000"
+    style="font-stretch: condensed;">generator</text>
+</svg>
+

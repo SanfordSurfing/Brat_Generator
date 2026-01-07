@@ -29,6 +29,11 @@ export async function generateMetadata({
   return {
     title: dict.meta.title,
     description: dict.meta.description,
+    icons: {
+      icon: '/icon.svg',
+      shortcut: '/icon.svg',
+      apple: '/apple-icon.svg',
+    },
     alternates: {
       canonical: `https://bratgenerator.com/${params.lang}`,
       languages: {
@@ -46,6 +51,20 @@ export async function generateMetadata({
       description: dict.meta.description,
       type: 'website',
       locale: localeMap[params.lang] || 'en_US',
+      images: [
+        {
+          url: '/opengraph-image.svg',
+          width: 1200,
+          height: 630,
+          alt: 'Brat Generator - Create Your Brat Style Image',
+        }
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: dict.meta.title,
+      description: dict.meta.description,
+      images: ['/opengraph-image.svg'],
     }
   }
 }
