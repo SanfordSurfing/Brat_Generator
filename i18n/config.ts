@@ -14,6 +14,21 @@ export const languages = [
     code: 'zh',
     name: '简体中文',
     flag: '🇨🇳'
+  },
+  {
+    code: 'es',
+    name: 'Español',
+    flag: '🇪🇸'
+  },
+  {
+    code: 'id',
+    name: 'Indonesia',
+    flag: '🇮🇩'
+  },
+  {
+    code: 'ja',
+    name: '日本語',
+    flag: '🇯🇵'
   }
 ] as const
 

@@ -1,7 +1,13 @@
 import { getDictionary } from '@/i18n/get-dictionary'
 import { type Language } from '@/i18n/config'
 import BratGenerator from '@/components/BratGenerator'
-import SEOContent from '@/components/SEOContent'
+import dynamic from 'next/dynamic'
+
+// 懒加载 SEO 内容组件（非首屏关键内容）
+const SEOContent = dynamic(() => import('@/components/SEOContent'), {
+  loading: () => <div style={{ height: '100px' }} />, // 占位符，避免布局抖动
+  ssr: true // 保留 SSR，但可以延迟加载 JS
+})
 
 // 首页组件（支持多语言）
 export default async function Home({

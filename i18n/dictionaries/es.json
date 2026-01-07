@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "Brat Generator - Crea Tu Imagen Estilo Brat",
+    "description": "Herramienta online gratuita para generar imágenes estilo álbum Brat de Charlie XCX. Ingresa texto y descarga al instante."
+  },
+  "home": {
+    "title": "Brat Generator",
+    "subtitle": "Crea Tu Propia Imagen Estilo Brat de Charlie XCX",
+    "inputLabel": "Ingresa Tu Texto",
+    "inputPlaceholder": "Ingresa cualquier texto...",
+    "inputHint": "Consejo: Presiona Enter para crear nuevas líneas",
+    "previewTitle": "Vista Previa",
+    "downloadButton": "Descargar Imagen",
+    "uploadButton": "Subir a Galería",
+    "uploading": "Subiendo...",
+    "uploadSuccess": "✓ ¡Subido!",
+    "viewInGallery": "Ver en Galería",
+    "footer": "Inspirado en el Álbum Brat de Charlie XCX"
+  },
+  "breadcrumb": {
+    "home": "Inicio",
+    "bratColor": "Color Brat"
+  },
+  "bratColor": {
+    "metaTitle": "Color Brat #8ACE00 - Código del Color Verde Brat Oficial",
+    "metaDescription": "Descubre el icónico color verde Brat. Obtén los valores HEX #8ACE00, RGB y HSL del color distintivo del álbum Brat de Charlie XCX.",
+    "title": "Color Brat",
+    "subtitle": "El color verde icónico del álbum Brat de Charlie XCX",
+    "aboutTitle": "Acerca del Verde Brat",
+    "aboutContent": [
+      "El álbum Brat de Charlie XCX presenta un color verde brillante distintivo (#8ACE00) que se ha vuelto instantáneamente reconocible en la cultura pop.",
+      "Este vibrante verde lima representa la energía audaz, segura y sin disculpas de la estética Brat. Ha sido ampliamente adoptado en redes sociales, fan art y cultura de internet.",
+      "El color se caracteriza por su alta saturación y brillo, haciéndolo destacar con una vibra rebelde y juguetona que captura perfectamente el espíritu del álbum.",
+      "¡Usa estos valores de color exactos para crear tus propios diseños y gráficos inspirados en Brat!"
+    ],
+    "backToHome": "Volver al Generador"
+  }
+}
+

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 // 点赞按钮组件属性
 type LikeButtonProps = {
@@ -10,16 +10,59 @@ type LikeButtonProps = {
 }
 
 /**
+ * 从 localStorage 读取用户的点赞状态
+ */
+function getLocalLikedStatus(imageId: string): boolean {
+  if (typeof window === 'undefined') return false
+  const likedImages = localStorage.getItem('brat_liked_images')
+  if (!likedImages) return false
+  
+  try {
+    const likedSet = new Set(JSON.parse(likedImages))
+    return likedSet.has(imageId)
+  } catch {
+    return false
+  }
+}
+
+/**
+ * 保存点赞状态到 localStorage
+ */
+function saveLocalLikedStatus(imageId: string) {
+  if (typeof window === 'undefined') return
+  const likedImages = localStorage.getItem('brat_liked_images')
+  
+  try {
+    const likedSet = likedImages ? new Set(JSON.parse(likedImages)) : new Set()
+    likedSet.add(imageId)
+    localStorage.setItem('brat_liked_images', JSON.stringify([...likedSet]))
+  } catch (error) {
+    console.error('Failed to save liked status:', error)
+  }
+}
+
+/**
  * 客户端点赞按钮组件
- * 处理点赞交互逻辑
+ * 处理点赞交互逻辑，使用 localStorage 持久化点赞状态
  */
 export default function LikeButton({ imageId, initialLikes, compact = false }: LikeButtonProps) {
   const [likes, setLikes] = useState(initialLikes)
   const [isLiking, setIsLiking] = useState(false)
   const [hasLiked, setHasLiked] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
+  // 组件挂载后，从 localStorage 读取点赞状态
+  useEffect(() => {
+    setMounted(true)
+    const likedStatus = getLocalLikedStatus(imageId)
+    setHasLiked(likedStatus)
+  }, [imageId])
+
+  /**
+   * 点赞处理函数（传统方式：等待API响应后再更新UI）
+   */
   const handleLike = async () => {
-    if (isLiking || hasLiked) return
+    if (hasLiked || isLiking) return
     
     setIsLiking(true)
     
@@ -28,18 +71,51 @@ export default function LikeButton({ imageId, initialLikes, compact = false }: L
         method: 'POST',
       })
       
-      if (response.ok) {
-        setLikes(prev => prev + 1)
+      if (!response.ok) {
+        throw new Error('Failed to like image')
+      }
+      
+      const data = await response.json()
+      
+      // API 成功后更新 UI
+      if (data.success) {
+        setLikes(data.likes)
         setHasLiked(true)
-      } else {
-        alert('Failed to like. Please try again.')
+        saveLocalLikedStatus(imageId)
       }
     } catch (error) {
       console.error('Like error:', error)
-      alert('Failed to like. Please try again.')
+      alert('点赞失败，请稍后重试')
     } finally {
       setIsLiking(false)
     }
+  }
+
+  // 防止 hydration 不匹配：等待客户端挂载后再显示点赞状态
+  if (!mounted) {
+    return (
+      <button
+        disabled
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: compact ? '6px' : '8px',
+          padding: compact ? '8px 16px' : '16px 32px',
+          background: '#f5f5f7',
+          border: 'none',
+          borderRadius: compact ? '20px' : '12px',
+          fontSize: compact ? '14px' : '17px',
+          fontWeight: '600',
+          color: '#1d1d1f',
+          cursor: 'wait',
+          width: compact ? 'auto' : '100%',
+          justifyContent: 'center'
+        }}
+      >
+        <span style={{ fontSize: compact ? '16px' : '20px' }}>🤍</span>
+        <span>{likes}</span>
+      </button>
+    )
   }
 
   if (compact) {
@@ -60,7 +136,8 @@ export default function LikeButton({ imageId, initialLikes, compact = false }: L
           fontWeight: '600',
           color: hasLiked ? 'white' : '#1d1d1f',
           cursor: isLiking || hasLiked ? 'not-allowed' : 'pointer',
-          transition: 'all 0.2s ease'
+          transition: 'all 0.2s ease',
+          opacity: isLiking ? 0.6 : 1
         }}
         onMouseEnter={(e) => {
           if (!isLiking && !hasLiked) {
@@ -73,7 +150,9 @@ export default function LikeButton({ imageId, initialLikes, compact = false }: L
           }
         }}
       >
-        <span style={{ fontSize: '16px' }}>{hasLiked ? '❤️' : '🤍'}</span>
+        <span style={{ fontSize: '16px' }}>
+          {isLiking ? '⏳' : (hasLiked ? '❤️' : '🤍')}
+        </span>
         <span>{likes}</span>
       </button>
     )
@@ -99,7 +178,8 @@ export default function LikeButton({ imageId, initialLikes, compact = false }: L
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '8px'
+        gap: '8px',
+        opacity: isLiking ? 0.8 : 1
       }}
       onMouseEnter={(e) => {
         if (!isLiking && !hasLiked) {
@@ -112,8 +192,12 @@ export default function LikeButton({ imageId, initialLikes, compact = false }: L
         }
       }}
     >
-      <span style={{ fontSize: '20px' }}>{hasLiked ? '✓' : '❤️'}</span>
-      <span>{hasLiked ? `Liked! (${likes})` : `${likes} ${likes === 1 ? 'Like' : 'Likes'}`}</span>
+      <span style={{ fontSize: '20px' }}>
+        {isLiking ? '⏳' : (hasLiked ? '✓' : '❤️')}
+      </span>
+      <span>
+        {isLiking ? 'Liking...' : (hasLiked ? `Liked! (${likes})` : `${likes} ${likes === 1 ? 'Like' : 'Likes'}`)}
+      </span>
     </button>
   )
 }

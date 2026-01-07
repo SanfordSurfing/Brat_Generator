@@ -4,6 +4,69 @@ import { getImages } from '@/lib/supabase-server'
 import ImageCard from '@/components/ImageCard'
 import { getDictionary } from '@/i18n/get-dictionary'
 
+// 多语言翻译配置
+const galleryTranslations: Record<string, {
+  title: string
+  description: string
+  heading: string
+  subtitle: string
+  noImages: string
+  backButton: string
+  home: string
+  locale: string
+}> = {
+  zh: {
+    title: 'Brat Gallery - 用户作品展示',
+    description: '探索由我们社区创作的精彩 Brat 风格图片。浏览、点赞并获得灵感！',
+    heading: 'Brat Gallery',
+    subtitle: '探索社区创作的精彩 Brat 风格图片',
+    noImages: '暂无图片。成为第一个上传的人！',
+    backButton: '返回生成器',
+    home: '首页',
+    locale: 'zh_CN'
+  },
+  en: {
+    title: 'Brat Gallery - Community Creations',
+    description: 'Explore amazing Brat style images created by our community. Browse, like, and get inspired!',
+    heading: 'Brat Gallery',
+    subtitle: 'Explore amazing Brat style images created by our community',
+    noImages: 'No images yet. Be the first to upload!',
+    backButton: 'Back to Generator',
+    home: 'Home',
+    locale: 'en_US'
+  },
+  es: {
+    title: 'Brat Gallery - Creaciones de la Comunidad',
+    description: 'Explora increíbles imágenes estilo Brat creadas por nuestra comunidad. ¡Navega, dale me gusta y obtén inspiración!',
+    heading: 'Brat Gallery',
+    subtitle: 'Explora increíbles imágenes estilo Brat creadas por nuestra comunidad',
+    noImages: '¡Aún no hay imágenes. Sé el primero en subir!',
+    backButton: 'Volver al Generador',
+    home: 'Inicio',
+    locale: 'es_ES'
+  },
+  id: {
+    title: 'Brat Gallery - Kreasi Komunitas',
+    description: 'Jelajahi gambar gaya Brat menakjubkan yang dibuat oleh komunitas kami. Jelajahi, sukai, dan dapatkan inspirasi!',
+    heading: 'Brat Gallery',
+    subtitle: 'Jelajahi gambar gaya Brat menakjubkan yang dibuat oleh komunitas kami',
+    noImages: 'Belum ada gambar. Jadilah yang pertama mengunggah!',
+    backButton: 'Kembali ke Generator',
+    home: 'Beranda',
+    locale: 'id_ID'
+  },
+  ja: {
+    title: 'Brat Gallery - コミュニティの作品',
+    description: 'コミュニティによって作成された素晴らしいBratスタイルの画像を探索してください。閲覧、いいね、インスピレーションを得よう！',
+    heading: 'Brat Gallery',
+    subtitle: 'コミュニティが作成した素晴らしいBratスタイルの画像を探索',
+    noImages: 'まだ画像がありません。最初にアップロードしましょう！',
+    backButton: 'ジェネレーターに戻る',
+    home: 'ホーム',
+    locale: 'ja_JP'
+  }
+}
+
 // 生成页面元数据（SEO）
 export async function generateMetadata({ 
   params 
@@ -11,27 +74,26 @@ export async function generateMetadata({
   params: { lang: Locale } 
 }): Promise<Metadata> {
   const dict = await getDictionary(params.lang)
-  
-  const title = params.lang === 'zh' ? 'Brat Gallery - 用户作品展示' : 'Brat Gallery - Community Creations'
-  const description = params.lang === 'zh' 
-    ? '探索由我们社区创作的精彩 Brat 风格图片。浏览、点赞并获得灵感！'
-    : 'Explore amazing Brat style images created by our community. Browse, like, and get inspired!'
+  const t = galleryTranslations[params.lang] || galleryTranslations['en']
   
   return {
-    title,
-    description,
+    title: t.title,
+    description: t.description,
     alternates: {
       canonical: `/${params.lang}/gallery`,
       languages: {
         'en': '/en/gallery',
         'zh': '/zh/gallery',
+        'es': '/es/gallery',
+        'id': '/id/gallery',
+        'ja': '/ja/gallery',
       }
     },
     openGraph: {
-      title,
-      description,
+      title: t.title,
+      description: t.description,
       type: 'website',
-      locale: params.lang === 'zh' ? 'zh_CN' : 'en_US',
+      locale: t.locale,
     }
   }
 }
@@ -45,6 +107,9 @@ export default async function GalleryPage({
 }: { 
   params: { lang: Locale } 
 }) {
+  // 获取翻译
+  const t = galleryTranslations[params.lang] || galleryTranslations['en']
+  
   // 在服务器端获取数据
   const images = await getImages()
   
@@ -56,9 +121,7 @@ export default async function GalleryPage({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Brat Gallery',
-    description: params.lang === 'zh' 
-      ? '探索由我们社区创作的精彩 Brat 风格图片'
-      : 'Explore amazing Brat style images created by our community',
+    description: t.description,
     url: `${baseUrl}/${params.lang}/gallery`,
     numberOfItems: images.length,
   }
@@ -94,7 +157,7 @@ export default async function GalleryPage({
           }}>
             <li>
               <a href={`/${params.lang}`} style={{ color: '#0071e3', textDecoration: 'none' }}>
-                {params.lang === 'zh' ? '首页' : 'Home'}
+                {t.home}
               </a>
             </li>
             <li aria-hidden="true">/</li>
@@ -112,7 +175,7 @@ export default async function GalleryPage({
           color: '#1d1d1f',
           textAlign: 'center'
         }}>
-          Brat Gallery
+          {t.heading}
         </h1>
 
         <p style={{
@@ -122,9 +185,7 @@ export default async function GalleryPage({
           marginBottom: '48px',
           lineHeight: '1.6'
         }}>
-          {params.lang === 'zh' 
-            ? '探索社区创作的精彩 Brat 风格图片' 
-            : 'Explore amazing Brat style images created by our community'}
+          {t.subtitle}
         </p>
 
         {/* 图片网格 */}
@@ -135,7 +196,7 @@ export default async function GalleryPage({
             fontSize: '17px',
             color: '#6e6e73'
           }}>
-            {params.lang === 'zh' ? '暂无图片。成为第一个上传的人！' : 'No images yet. Be the first to upload!'}
+            {t.noImages}
           </div>
         ) : (
           <div style={{
@@ -173,7 +234,7 @@ export default async function GalleryPage({
               transition: 'all 0.2s ease'
             }}
           >
-            {params.lang === 'zh' ? '返回生成器' : 'Back to Generator'}
+            {t.backButton}
           </a>
         </div>
       </div>

@@ -354,3 +354,296 @@
   - **效果**：文字内容较多时，始终基本填满整个画布
   - 设置最小字号为 40px，防止文字过小
 
+#### 第七版（v1.7 - Bug修复与SEO运营）
+- ✅ **点赞bug修复**：使用 localStorage 持久化点赞状态
+  - 用户点赞后，即使刷新页面或离开再回来，点赞状态依然保留
+  - 新增 `getLocalLikedStatus()` 和 `saveLocalLikedStatus()` 函数
+  - 避免用户重复点赞同一张图片
+  - 提升用户体验
+- ✅ **Charlie XCX 歌词图片生成器**（SEO 运营工具）：
+  - 新增管理页面：`/[lang]/admin/lyrics`
+  - 批量生成 15 首热门歌曲的 Brat 风格图片
+  - 包含歌曲：360、Von dutch、Apple、Girl so confusing、Guess 等
+  - 每张图片都有优化的 alt 文本（中英文）
+  - 自动上传到 Gallery，通过 SEO 吸引搜索流量
+  - 生成进度实时显示
+- ✅ **首屏加载速度全面优化**：
+  - 字体优化：使用系统字体 + `font-display: swap`
+  - DNS 预解析和预连接（Supabase）
+  - 关键 CSS 内联，避免阻塞渲染
+  - SEO 内容组件懒加载（使用 `dynamic import`）
+  - 图片懒加载（`loading="lazy"`）
+  - 启用 Gzip 压缩
+  - 使用 SWC 压缩 JS（更快）
+  - CSS 优化（`optimizeCss: true`）
+  - 包按需导入（Supabase 等库）
+  - 配置现代图片格式支持（AVIF、WebP）
+- ✅ **性能优化配置**：
+  - 更新 `next.config.js`，启用所有性能优化选项
+  - 图片缓存 7 天
+  - 响应式图片尺寸配置
+  - 外部域名配置（Supabase Storage）
+
+---
+
+## 🆕 新增文件说明
+
+### `components/LikeButton.tsx`（已更新）
+- **作用**：客户端点赞按钮组件，支持 localStorage 持久化
+- **功能**：
+  - 点赞交互逻辑
+  - Optimistic UI 更新
+  - 点赞状态持久化到浏览器本地存储
+  - 防止重复点赞
+  - 支持紧凑模式和完整模式
+- **数据存储**：
+  - 使用 localStorage 的 `brat_liked_images` 键
+  - 存储格式：JSON 数组 `["image-id-1", "image-id-2", ...]`
+- **Hydration 优化**：
+  - 等待客户端挂载后再显示点赞状态
+  - 避免服务端渲染和客户端渲染的不一致
+
+### `app/[lang]/admin/lyrics/page.tsx`（新增）
+- **作用**：管理页面，用于批量生成 Charlie XCX 歌词图片
+- **访问路径**：`/en/admin/lyrics` 或 `/zh/admin/lyrics`
+- **功能**：
+  - 显示 15 首热门歌曲列表
+  - 批量生成 Brat 风格图片
+  - 自动上传到 Gallery
+  - 实时显示生成进度
+  - 预览已生成的图片
+- **用途**：SEO 优化，通过图片 alt 文本吸引搜索流量
+
+### `components/LyricsGenerator.tsx`（新增）
+- **作用**：歌词图片生成器组件
+- **功能**：
+  - 内置 15 首 Charlie XCX 热门歌曲歌词
+  - 每首歌曲都有优化的中英文 alt 文本
+  - 批量生成并上传功能
+  - 进度条和状态提示
+  - 生成结果预览
+- **歌曲列表**：
+  - 360、Von dutch、Apple、Girl so confusing
+  - Guess、Club classics、365、B2b
+  - Sympathy is a knife、I might say something stupid
+  - Everything is romantic、Rewind、Talk talk、So I、Mean girls
+- **优化细节**：
+  - 生成间隔 500ms，避免请求过快
+  - 错误处理和状态反馈
+  - 响应式网格布局
+
+### `app/[lang]/layout.tsx`（已更新）
+- **新增功能**：
+  - DNS 预解析和预连接（Supabase）
+  - 关键 CSS 内联（优化首屏渲染）
+  - 字体渲染优化（`font-display: swap`）
+- **性能提升**：
+  - 减少阻塞渲染的资源
+  - 提前建立网络连接
+  - 加速首次内容绘制（FCP）
+
+### `app/[lang]/page.tsx`（已更新）
+- **新增优化**：
+  - SEO 内容组件懒加载（使用 `dynamic import`）
+  - 保留 SSR，但延迟加载客户端 JS
+  - 占位符避免布局抖动
+
+### `next.config.js`（已更新）
+- **新增配置**：
+  - `compress: true` - 启用 Gzip 压缩
+  - `swcMinify: true` - 使用 SWC 压缩 JS
+  - `optimizeCss: true` - CSS 优化
+  - `optimizePackageImports` - 按需导入包
+  - `images` - 图片优化配置
+    - 现代图片格式（AVIF、WebP）
+    - 响应式尺寸
+    - 缓存策略（7 天）
+    - 外部域名支持（Supabase）
+
+### `app/globals.css`（已更新）
+- **新增优化**：
+  - `will-change: scroll-position` - 减少重绘
+  - 性能优化注释
+  - 渲染性能提升
+
+---
+
+## 🎯 代码分割和懒加载概念说明
+
+### 代码分割（Code Splitting）
+**通俗解释**：像分批打包行李箱
+- 不一次性加载所有代码
+- 按需加载，需要什么加载什么
+- 首页只加载首页的代码
+
+**项目中的应用**：
+- ✅ Next.js 自动代码分割（每个页面独立）
+- ✅ Supabase 等库按需导入
+
+### 懒加载（Lazy Loading）
+**通俗解释**：像 Netflix 视频缓冲
+- 只加载用户能看到的内容
+- 其他内容等用户需要时再加载
+- 节省流量和提升速度
+
+**项目中的应用**：
+- ✅ 图片懒加载（`loading="lazy"`）
+- ✅ SEO 内容组件懒加载（`dynamic import`）
+- ✅ 首屏优先加载策略
+
+### 是否需要更多优化？
+**答案：目前不需要。**
+
+原因：
+- 项目代码量不大
+- 关键优化已经完成
+- 过度优化会增加复杂度
+- 当前性能已经很好
+
+**建议**：专注于内容和 SEO，等流量大了再考虑进一步优化。
+
+#### 第八版（v1.8 - 用户体验优化与多语言扩展）
+- ✅ **点赞速度优化**：实现真正的 Optimistic UI
+  - 用户点击后立即看到点赞效果，无需等待
+  - 后台异步处理实际的 API 请求（约1秒）
+  - 如果 API 失败，自动回滚 UI 状态
+  - 大幅提升用户体验
+- ✅ **换行逻辑修复**：处理长单词溢出问题
+  - 新增强制断词功能
+  - 当单词宽度超过画布时，在单词内部断开
+  - 确保所有文本都能完整显示在画布内
+  - 修复 "Sympathy" 等长单词溢出的 bug
+- ✅ **语言切换功能**：
+  - 新增语言切换器组件（`LanguageSwitcher.tsx`）
+  - 导航栏右上角显示当前语言和旗帜图标
+  - 点击展开下拉菜单，选择其他语言
+  - 玻璃拟态设计风格
+  - 当前语言高亮显示
+- ✅ **多语言扩展**：
+  - 新增西班牙语（/es）支持
+  - 新增印度尼西亚语（/id）支持
+  - 新增日语（/ja）支持
+  - 所有页面和功能都支持这5种语言
+  - 完整的翻译文件（es.json, id.json, ja.json）
+  - SEO 优化：sitemap、hreflang、Open Graph 全部支持新语言
+- ✅ **删除管理页面**：
+  - 删除 `/admin/lyrics` 页面
+  - 删除 `LyricsGenerator.tsx` 组件
+  - 后续通过脚本处理歌词图片生成
+
+---
+
+## 🆕 新增文件说明（v1.8）
+
+### `components/LanguageSwitcher.tsx`（新增）
+- **作用**：语言切换下拉菜单组件
+- **功能**：
+  - 显示当前语言和旗帜图标
+  - 点击展开下拉菜单
+  - 列出所有支持的语言
+  - 点击语言后自动跳转到对应语言版本
+  - 点击外部自动关闭菜单
+- **设计**：
+  - 玻璃拟态效果（`backdrop-filter: blur()`）
+  - 平滑动画（`slideDown` 动画）
+  - 当前语言高亮显示
+  - 响应式设计：小屏幕只显示旗帜，大屏幕显示语言名称
+- **技术细节**：
+  - 使用 `usePathname` 获取当前路径
+  - 使用 `useRef` 和 `useEffect` 处理点击外部关闭
+  - 客户端组件（'use client'）
+
+### `i18n/dictionaries/es.json`（新增）
+- **作用**：西班牙语翻译文件
+- **内容**：所有页面的西班牙语翻译
+- **特点**：专业翻译，符合西班牙语使用习惯
+
+### `i18n/dictionaries/id.json`（新增）
+- **作用**：印度尼西亚语翻译文件
+- **内容**：所有页面的印度尼西亚语翻译
+- **特点**：专业翻译，符合印度尼西亚语使用习惯
+
+### `i18n/dictionaries/ja.json`（新增）
+- **作用**：日语翻译文件
+- **内容**：所有页面的日语翻译
+- **特点**：专业翻译，符合日语使用习惯
+
+### `i18n/config.ts`（已更新）
+- **新增语言**：
+  - 西班牙语：`{ code: 'es', name: 'Español', flag: '🇪🇸' }`
+  - 印度尼西亚语：`{ code: 'id', name: 'Indonesia', flag: '🇮🇩' }`
+  - 日语：`{ code: 'ja', name: '日本語', flag: '🇯🇵' }`
+- **功能**：
+  - `languages` 数组现在包含 5 种语言
+  - `languageCodes` 自动生成语言代码列表
+  - 所有页面自动支持这些语言
+
+### `i18n/get-dictionary.ts`（已更新）
+- **新增导入**：
+  - `es: () => import('./dictionaries/es.json')`
+  - `id: () => import('./dictionaries/id.json')`
+  - `ja: () => import('./dictionaries/ja.json')`
+- **功能**：动态导入翻译文件，按需加载
+
+### `components/Navigation.tsx`（已更新）
+- **新增**：集成 `LanguageSwitcher` 组件
+- **位置**：导航栏右侧，导航链接后面
+- **布局**：使用 flexbox 布局，自适应间距
+
+### `app/[lang]/layout.tsx`（已更新）
+- **新增语言支持**：
+  - `alternates.languages` 现在包含所有 5 种语言
+  - `openGraph.locale` 支持所有语言的 locale 映射
+  - locale 映射：en_US, zh_CN, es_ES, id_ID, ja_JP
+- **SEO 优化**：
+  - 所有语言版本都有正确的 hreflang 标签
+  - 所有语言版本都有正确的 canonical URL
+  - 所有语言版本都有正确的 Open Graph locale
+
+### `components/LikeButton.tsx`（已更新）
+- **优化**：真正的 Optimistic UI
+- **逻辑变化**：
+  - **旧逻辑**：点击 → 等待 API → 更新 UI（1秒延迟）
+  - **新逻辑**：点击 → 立即更新 UI → 后台调用 API → API 失败则回滚
+- **回滚机制**：
+  - 保存点赞前的 likes 数量
+  - API 失败时恢复原值
+  - 从 localStorage 移除点赞状态
+- **用户体验**：点击后瞬间响应，无等待感
+
+### `utils/imageGenerator.ts`（已更新）
+- **修复**：`wrapText()` 函数增强
+- **新增功能**：强制断词
+- **逻辑**：
+  - 检测单词宽度是否超过画布
+  - 如果超过，逐字符添加直到达到最大宽度
+  - 自动断开并换行
+  - 确保所有文本都能显示
+- **修复的问题**：长单词（如 "Sympathy"）溢出画布
+
+---
+
+## 📊 项目当前状态（v1.8）
+
+### 支持的语言（5种）
+- 🇺🇸 English (en)
+- 🇨🇳 简体中文 (zh)
+- 🇪🇸 Español (es)
+- 🇮🇩 Indonesia (id)
+- 🇯🇵 日本語 (ja)
+
+### 所有页面都支持多语言
+- 首页：`/{lang}`
+- Gallery：`/{lang}/gallery`
+- 图片详情：`/{lang}/gallery/[id]`
+- Brat Color：`/{lang}/brat-color`
+- 隐私政策：`/{lang}/privacy`
+- Cookies 政策：`/{lang}/cookies`
+
+### 构建信息
+- 总页面数：39 页（5 种语言 × 主要页面）
+- 首屏 JS 大小：87.3 kB（共享）
+- 最大页面大小：94.5 kB（首页）
+- 构建时间：正常
+- 所有类型检查：通过 ✅
+

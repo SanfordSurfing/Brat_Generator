@@ -35,18 +35,25 @@ export async function POST(
       return NextResponse.json({ error: error.message }, { status: 500 })
     }
     
-    // 🔄 刷新 Gallery 页面和图片详情页缓存
+    // 🔄 刷新所有语言版本的 Gallery 页面和图片详情页缓存
+    const languages = ['en', 'zh', 'es', 'id', 'ja']
+    
     // Gallery 页面需要刷新（因为排序可能改变）
-    revalidatePath('/[lang]/gallery', 'page')
-    revalidatePath('/en/gallery', 'page')
-    revalidatePath('/zh/gallery', 'page')
+    for (const lang of languages) {
+      revalidatePath(`/${lang}/gallery`, 'page')
+    }
     
     // 图片详情页需要刷新（显示新的点赞数）
-    revalidatePath(`/[lang]/gallery/${id}`, 'page')
-    revalidatePath(`/en/gallery/${id}`, 'page')
-    revalidatePath(`/zh/gallery/${id}`, 'page')
+    for (const lang of languages) {
+      revalidatePath(`/${lang}/gallery/${id}`, 'page')
+    }
     
-    return NextResponse.json({ data }, { status: 200 })
+    // 返回更新后的点赞数
+    return NextResponse.json({ 
+      data, 
+      likes: data.likes,
+      success: true 
+    }, { status: 200 })
   } catch (error) {
     console.error('Server error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })

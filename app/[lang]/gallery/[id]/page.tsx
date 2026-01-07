@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { Locale } from '@/i18n/config'
+import { Locale, locales } from '@/i18n/config'
 import { getImageById, getRecentImageIds } from '@/lib/supabase-server'
 import LikeButton from '@/components/LikeButton'
 
@@ -9,9 +9,9 @@ import LikeButton from '@/components/LikeButton'
 export async function generateStaticParams() {
   const imageIds = await getRecentImageIds(100)
   
-  // 为每个语言生成路径
+  // 为每个语言生成路径（支持所有语言：en, zh, es, id, ja）
   const params = []
-  for (const lang of ['en', 'zh']) {
+  for (const lang of locales) {
     for (const id of imageIds) {
       params.push({ lang, id })
     }
@@ -40,6 +40,15 @@ export async function generateMetadata({
     ? `查看这张 Brat 风格图片："${image.text.substring(0, 100)}"。点赞数：${image.likes}`
     : `View this Brat style image: "${image.text.substring(0, 100)}". ${image.likes} likes.`
   
+  // 多语言locale映射
+  const localeMap: Record<string, string> = {
+    'en': 'en_US',
+    'zh': 'zh_CN',
+    'es': 'es_ES',
+    'id': 'id_ID',
+    'ja': 'ja_JP'
+  }
+  
   return {
     title,
     description,
@@ -48,13 +57,16 @@ export async function generateMetadata({
       languages: {
         'en': `/en/gallery/${image.id}`,
         'zh': `/zh/gallery/${image.id}`,
+        'es': `/es/gallery/${image.id}`,
+        'id': `/id/gallery/${image.id}`,
+        'ja': `/ja/gallery/${image.id}`,
       }
     },
     openGraph: {
       title,
       description,
       type: 'article',
-      locale: params.lang === 'zh' ? 'zh_CN' : 'en_US',
+      locale: localeMap[params.lang] || 'en_US',
       images: [
         {
           url: image.image_url,

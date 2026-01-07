@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "Brat Generator - Buat Gambar Gaya Brat Anda",
+    "description": "Alat online gratis untuk membuat gambar gaya album Brat Charlie XCX. Masukkan teks dan unduh langsung."
+  },
+  "home": {
+    "title": "Brat Generator",
+    "subtitle": "Buat Gambar Gaya Brat Charlie XCX Anda Sendiri",
+    "inputLabel": "Masukkan Teks Anda",
+    "inputPlaceholder": "Masukkan teks apa saja...",
+    "inputHint": "Tips: Tekan Enter untuk membuat baris baru",
+    "previewTitle": "Pratinjau",
+    "downloadButton": "Unduh Gambar",
+    "uploadButton": "Unggah ke Galeri",
+    "uploading": "Mengunggah...",
+    "uploadSuccess": "✓ Berhasil!",
+    "viewInGallery": "Lihat di Galeri",
+    "footer": "Terinspirasi dari Album Brat Charlie XCX"
+  },
+  "breadcrumb": {
+    "home": "Beranda",
+    "bratColor": "Warna Brat"
+  },
+  "bratColor": {
+    "metaTitle": "Warna Brat #8ACE00 - Kode Warna Hijau Brat Resmi",
+    "metaDescription": "Temukan warna hijau Brat yang ikonik. Dapatkan nilai HEX #8ACE00, RGB dan HSL untuk warna khas album Brat Charlie XCX.",
+    "title": "Warna Brat",
+    "subtitle": "Warna hijau ikonik dari album Brat Charlie XCX",
+    "aboutTitle": "Tentang Hijau Brat",
+    "aboutContent": [
+      "Album Brat karya Charlie XCX menampilkan warna hijau cerah khas (#8ACE00) yang langsung dikenali dalam budaya pop.",
+      "Hijau lime yang cerah ini mewakili energi yang berani, percaya diri, dan tanpa permintaan maaf dari estetika Brat. Telah banyak diadopsi di media sosial, fan art, dan budaya internet.",
+      "Warna ini ditandai dengan saturasi dan kecerahan tinggi, membuatnya menonjol dengan getaran pemberontak dan ceria yang sempurna menangkap semangat album.",
+      "Gunakan nilai warna yang tepat ini untuk membuat desain dan grafis Anda sendiri yang terinspirasi Brat!"
+    ],
+    "backToHome": "Kembali ke Generator"
+  }
+}
+

@@ -51,7 +51,26 @@ function addRandomSpaces(text: string): string {
 }
 
 /**
+ * 检查文本中是否有单个单词超过最大宽度
+ * @param ctx - Canvas 绘图上下文
+ * @param text - 要检查的文本
+ * @param maxWidth - 最大宽度
+ * @returns 是否有长单词
+ */
+function hasLongWord(ctx: CanvasRenderingContext2D, text: string, maxWidth: number): boolean {
+  const words = text.split(' ')
+  for (const word of words) {
+    const wordWidth = ctx.measureText(word).width
+    if (wordWidth > maxWidth) {
+      return true
+    }
+  }
+  return false
+}
+
+/**
  * 将文本自动换行，防止溢出画布
+ * 只处理正常换行，不强制断词
  * @param ctx - Canvas 绘图上下文
  * @param text - 要处理的文本
  * @param maxWidth - 最大宽度
@@ -126,10 +145,25 @@ export function generateBratImage(text: string, canvas: HTMLCanvasElement): stri
   let totalHeight = 0
   let lineHeight = 0
   
-  // 循环：尝试当前字号，如果溢出就缩小字号重试
+  // 循环：尝试当前字号，如果溢出或有长单词就缩小字号重试
   while (fontSize >= minFontSize) {
     // 设置当前字号
     ctx.font = `${BRAT_CONFIG.fontWeight} ${fontSize}px ${BRAT_CONFIG.fontFamily}`
+    
+    // ⚠️ 检查是否有单个单词超过画布宽度
+    let hasLongWords = false
+    for (const line of crazyLines) {
+      if (hasLongWord(ctx, line, maxWidth)) {
+        hasLongWords = true
+        break
+      }
+    }
+    
+    // 如果有长单词，缩小字号重试（不进行换行）
+    if (hasLongWords) {
+      fontSize = fontSize * 0.95
+      continue
+    }
     
     // 进行自动换行处理
     allLines = []

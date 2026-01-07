@@ -8,6 +8,9 @@ import type { Language } from './config'
 const dictionaries = {
   en: () => import('./dictionaries/en.json').then((module) => module.default),
   zh: () => import('./dictionaries/zh.json').then((module) => module.default),
+  es: () => import('./dictionaries/es.json').then((module) => module.default),
+  id: () => import('./dictionaries/id.json').then((module) => module.default),
+  ja: () => import('./dictionaries/ja.json').then((module) => module.default),
 }
 
 // 获取字典的函数
@@ -18,4 +21,5 @@ export const getDictionary = async (locale: Language) => {
   }
   return dictionaries[locale]()
 }
+
 

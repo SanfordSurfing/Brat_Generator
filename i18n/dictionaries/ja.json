@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "Brat Generator - Bratスタイル画像を作成",
+    "description": "Charlie XCX Bratアルバムスタイルの画像を生成する無料オンラインツール。テキストを入力してすぐにダウンロード。"
+  },
+  "home": {
+    "title": "Brat Generator",
+    "subtitle": "Charlie XCX Bratスタイル画像を作成しよう",
+    "inputLabel": "テキストを入力",
+    "inputPlaceholder": "何でも入力してください...",
+    "inputHint": "ヒント：Enterキーで改行できます",
+    "previewTitle": "プレビュー",
+    "downloadButton": "画像をダウンロード",
+    "uploadButton": "ギャラリーにアップロード",
+    "uploading": "アップロード中...",
+    "uploadSuccess": "✓ アップロード完了！",
+    "viewInGallery": "ギャラリーで見る",
+    "footer": "Charlie XCXのBratアルバムにインスパイアされています"
+  },
+  "breadcrumb": {
+    "home": "ホーム",
+    "bratColor": "Bratカラー"
+  },
+  "bratColor": {
+    "metaTitle": "Bratカラー #8ACE00 - 公式Bratグリーンカラーコード",
+    "metaDescription": "象徴的なBratグリーンカラーを発見。Charlie XCXのBratアルバムの特徴的な色のHEX #8ACE00、RGBおよびHSL値を取得。",
+    "title": "Bratカラー",
+    "subtitle": "Charlie XCXのBratアルバムの象徴的なグリーンカラー",
+    "aboutTitle": "Bratグリーンについて",
+    "aboutContent": [
+      "Charlie XCXのBratアルバムは、ポップカルチャーで即座に認識される特徴的な明るい緑色（#8ACE00）を特徴としています。",
+      "この鮮やかなライムグリーンは、Brat美学の大胆で自信に満ち、謝罪のないエネルギーを表しています。ソーシャルメディア、ファンアート、インターネット文化で広く採用されています。",
+      "この色は高い彩度と明度が特徴で、アルバムの精神を完璧に捉えた反抗的で遊び心のある雰囲気で際立っています。",
+      "これらの正確なカラー値を使用して、独自のBratにインスパイアされたデザインとグラフィックを作成しましょう！"
+    ],
+    "backToHome": "ジェネレーターに戻る"
+  }
+}
+

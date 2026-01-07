@@ -183,3 +183,4 @@ A: 不需要。所有语言都在同一个域名下，通过路径区分（`exam
 - [MDN: Accept-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language)
 - [Google: Multilingual SEO](https://developers.google.com/search/docs/specialty/international)
 
+

@@ -17,6 +17,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const dict = await getDictionary(params.lang)
   
+  // 语言locale映射
+  const localeMap: Record<string, string> = {
+    'en': 'en_US',
+    'zh': 'zh_CN',
+    'es': 'es_ES',
+    'id': 'id_ID',
+    'ja': 'ja_JP'
+  }
+
   return {
     title: dict.meta.title,
     description: dict.meta.description,
@@ -25,6 +34,9 @@ export async function generateMetadata({
       languages: {
         'en': 'https://bratgenerator.com/en',
         'zh': 'https://bratgenerator.com/zh',
+        'es': 'https://bratgenerator.com/es',
+        'id': 'https://bratgenerator.com/id',
+        'ja': 'https://bratgenerator.com/ja',
       }
     },
     keywords: ['Brat', 'Charlie XCX', 'Image Generator', 'Brat Generator', 'Album Cover'],
@@ -33,7 +45,7 @@ export async function generateMetadata({
       title: dict.meta.title,
       description: dict.meta.description,
       type: 'website',
-      locale: params.lang === 'zh' ? 'zh_CN' : 'en_US',
+      locale: localeMap[params.lang] || 'en_US',
     }
   }
 }
@@ -53,6 +65,30 @@ export default function RootLayout({
 }) {
   return (
     <html lang={params.lang}>
+      <head>
+        {/* 字体预加载优化：使用系统字体，无需额外加载 */}
+        {/* DNS 预解析：提前解析 Supabase 域名 */}
+        <link rel="dns-prefetch" href="https://supabase.co" />
+        <link rel="preconnect" href="https://supabase.co" crossOrigin="anonymous" />
+        
+        {/* 优化字体渲染 */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            @font-face {
+              font-family: 'Arial Narrow';
+              font-display: swap;
+            }
+            /* 关键 CSS 内联，避免阻塞渲染 */
+            body {
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+              background: #f5f5f7;
+              color: #1d1d1f;
+              margin: 0;
+              padding: 0;
+            }
+          `
+        }} />
+      </head>
       <body style={{ margin: 0, padding: 0 }}>
         {/* 全局顶部导航栏 */}
         <Navigation lang={params.lang} />

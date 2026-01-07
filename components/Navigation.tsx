@@ -1,6 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
+import LanguageSwitcher from './LanguageSwitcher'
 
 // 导航栏组件属性
 type NavigationProps = {
@@ -80,12 +81,13 @@ export default function Navigation({ lang }: NavigationProps) {
         </span>
       </a>
       
-      {/* 导航链接 */}
+      {/* 导航链接 + 语言切换 */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
         gap: 'clamp(8px, 2vw, 24px)'
       }}>
+        {/* 导航链接 */}
         {navLinks.map((link) => (
           <a
             key={link.href}
@@ -122,6 +124,9 @@ export default function Navigation({ lang }: NavigationProps) {
             </span>
           </a>
         ))}
+        
+        {/* 语言切换器 */}
+        <LanguageSwitcher />
       </div>
     </nav>
   )
