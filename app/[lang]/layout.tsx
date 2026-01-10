@@ -35,13 +35,13 @@ export async function generateMetadata({
       apple: '/apple-icon.svg',
     },
     alternates: {
-      canonical: `https://bratgenerator.com/${params.lang}`,
+      canonical: `https://makemybrat.com/${params.lang}`,
       languages: {
-        'en': 'https://bratgenerator.com/en',
-        'zh': 'https://bratgenerator.com/zh',
-        'es': 'https://bratgenerator.com/es',
-        'id': 'https://bratgenerator.com/id',
-        'ja': 'https://bratgenerator.com/ja',
+        'en': 'https://makemybrat.com/en',
+        'zh': 'https://makemybrat.com/zh',
+        'es': 'https://makemybrat.com/es',
+        'id': 'https://makemybrat.com/id',
+        'ja': 'https://makemybrat.com/ja',
       }
     },
     keywords: ['Brat', 'Charlie XCX', 'Image Generator', 'Brat Generator', 'Album Cover'],

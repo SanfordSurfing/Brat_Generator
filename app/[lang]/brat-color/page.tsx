@@ -32,7 +32,7 @@ export default async function BratColorPage({
   const dict = await getDictionary(params.lang)
   
   // 基础 URL
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bratgenerator.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://makemybrat.com'
   
   // 结构化数据（Schema.org JSON-LD）
   const structuredData = {

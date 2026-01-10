@@ -79,3 +79,4 @@ export default function ImageCard({ id, imageUrl, text, likes, lang }: ImageCard
 }
 
 
+
