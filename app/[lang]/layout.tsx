@@ -85,6 +85,11 @@ export default function RootLayout({
   return (
     <html lang={params.lang}>
       <head>
+        {/* Favicon配置（确保所有浏览器和搜索引擎都能正确显示） */}
+        <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="apple-touch-icon" href="/apple-icon.svg" />
+        
         {/* 字体预加载优化：使用系统字体，无需额外加载 */}
         {/* DNS 预解析：提前解析 Supabase 域名 */}
         <link rel="dns-prefetch" href="https://supabase.co" />
