@@ -14,7 +14,6 @@ const translations: Record<string, {
   section2Title: string
   section2Para: string
   howToUse: { title: string; steps: string[] }
-  relatedKeywords: { title: string; keywords: string[] }
 }> = {
   zh: {
     section1Title: '关于这张 Brat 风格图片',
@@ -30,21 +29,6 @@ const translations: Record<string, {
         'Brat Lyrics 灵感：学习如何使用 brat lyrics generator 和 lyrics brat 风格创作歌词海报',
         '社交媒体素材：在 Instagram、Twitter、TikTok 上分享这个 charli xcx meme 和 brat typing 作品',
         'Brat Template 模板：作为 brat template 用于品牌设计、brat website 和商业项目'
-      ]
-    },
-    relatedKeywords: {
-      title: '相关创作工具',
-      keywords: [
-        'brat text generator - 输入任何文字创作 Brat 风格图片',
-        'brat font generator - 使用正宗的 charli xcx font 和 brat album font',
-        'brat meme generator - 制作爆款 brat memes 和 text meme',
-        'brat lyric generator - 创作 brat lyrics 和 brat subtitles 风格歌词',
-        'meme text generator - 使用 meme generator fonts 和 meme creator app',
-        'brat cover generator - 生成 brat album cover 和 brat cover 图片',
-        'brat image generator - 创作 brat wallpaper 和 brat letter 设计',
-        'charli xcx text generator - 完美的 charli xcx brat generator 工具',
-        'free brat generator - 完全免费的 brat generator free 平台',
-        'brat typing - 实时预览的 brat typer 和 brat word generator'
       ]
     }
   },
@@ -63,21 +47,6 @@ const translations: Record<string, {
         'Social Media Material: Share this charli xcx meme and brat typing work on Instagram, Twitter, TikTok',
         'Brat Template: Use as brat template for brand design, brat website, and commercial projects'
       ]
-    },
-    relatedKeywords: {
-      title: 'Related Creation Tools',
-      keywords: [
-        'brat text generator - Enter any text to create Brat style images',
-        'brat font generator - Use authentic charli xcx font and brat album font',
-        'brat meme generator - Create viral brat memes and text meme',
-        'brat lyric generator - Create brat lyrics and brat subtitles style lyrics',
-        'meme text generator - Use meme generator fonts and meme creator app',
-        'brat cover generator - Generate brat album cover and brat cover images',
-        'brat image generator - Create brat wallpaper and brat letter designs',
-        'charli xcx text generator - Perfect charli xcx brat generator tool',
-        'free brat generator - Completely free brat generator free platform',
-        'brat typing - Real-time preview brat typer and brat word generator'
-      ]
     }
   },
   es: {
@@ -94,21 +63,6 @@ const translations: Record<string, {
         'Inspiración Brat Lyrics: Aprende a usar brat lyrics generator y estilo lyrics brat para crear pósters de letras',
         'Material de Redes Sociales: Comparte este charli xcx meme y trabajo brat typing en Instagram, Twitter, TikTok',
         'Brat Template: Usa como brat template para diseño de marca, brat website y proyectos comerciales'
-      ]
-    },
-    relatedKeywords: {
-      title: 'Herramientas de Creación Relacionadas',
-      keywords: [
-        'brat text generator - Ingresa cualquier texto para crear imágenes estilo Brat',
-        'brat font generator - Usa auténtico charli xcx font y brat album font',
-        'brat meme generator - Crea brat memes virales y text meme',
-        'brat lyric generator - Crea brat lyrics y letras estilo brat subtitles',
-        'meme text generator - Usa meme generator fonts y meme creator app',
-        'brat cover generator - Genera imágenes brat album cover y brat cover',
-        'brat image generator - Crea diseños brat wallpaper y brat letter',
-        'charli xcx text generator - Herramienta perfecta charli xcx brat generator',
-        'free brat generator - Plataforma completamente gratuita brat generator free',
-        'brat typing - Vista previa en tiempo real brat typer y brat word generator'
       ]
     }
   },
@@ -127,21 +81,6 @@ const translations: Record<string, {
         'Materi Media Sosial: Bagikan charli xcx meme dan karya brat typing ini di Instagram, Twitter, TikTok',
         'Brat Template: Gunakan sebagai brat template untuk desain merek, brat website, dan proyek komersial'
       ]
-    },
-    relatedKeywords: {
-      title: 'Alat Kreasi Terkait',
-      keywords: [
-        'brat text generator - Masukkan teks apa pun untuk membuat gambar gaya Brat',
-        'brat font generator - Gunakan charli xcx font dan brat album font autentik',
-        'brat meme generator - Buat brat memes viral dan text meme',
-        'brat lyric generator - Buat brat lyrics dan lirik gaya brat subtitles',
-        'meme text generator - Gunakan meme generator fonts dan meme creator app',
-        'brat cover generator - Hasilkan gambar brat album cover dan brat cover',
-        'brat image generator - Buat desain brat wallpaper dan brat letter',
-        'charli xcx text generator - Alat charli xcx brat generator sempurna',
-        'free brat generator - Platform brat generator free sepenuhnya gratis',
-        'brat typing - Pratinjau real-time brat typer dan brat word generator'
-      ]
     }
   },
   ja: {
@@ -158,21 +97,6 @@ const translations: Record<string, {
         'Brat Lyricsインスピレーション：brat lyrics generatorとlyrics bratスタイルを使用して歌詞ポスターを作成する方法を学ぶ',
         'ソーシャルメディア素材：Instagram、Twitter、TikTokでこのcharli xcx memeとbrat typing作品を共有',
         'Brat Template：ブランドデザイン、brat website、商業プロジェクトのbrat templateとして使用'
-      ]
-    },
-    relatedKeywords: {
-      title: '関連作成ツール',
-      keywords: [
-        'brat text generator - 任意のテキストを入力してBratスタイル画像を作成',
-        'brat font generator - 本物のcharli xcx fontとbrat album fontを使用',
-        'brat meme generator - バイラルbrat memesとtext memeを作成',
-        'brat lyric generator - brat lyricsとbrat subtitlesスタイルの歌詞を作成',
-        'meme text generator - meme generator fontsとmeme creator appを使用',
-        'brat cover generator - brat album coverとbrat cover画像を生成',
-        'brat image generator - brat wallpaperとbrat letterデザインを作成',
-        'charli xcx text generator - 完璧なcharli xcx brat generatorツール',
-        'free brat generator - 完全に無料のbrat generator freeプラットフォーム',
-        'brat typing - リアルタイムプレビューbrat typerとbrat word generator'
       ]
     }
   }
@@ -222,37 +146,6 @@ export default function ImageDetailSEOContent({ lang, imageText, createdAt }: Im
             </li>
           ))}
         </ul>
-
-        {/* 相关关键词 */}
-        <div style={{
-          background: '#f5f5f7',
-          borderRadius: '12px',
-          padding: '24px',
-          marginTop: '32px'
-        }}>
-          <h3 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '16px', color: '#1d1d1f' }}>
-            {t.relatedKeywords.title}
-          </h3>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '12px'
-          }}>
-            {t.relatedKeywords.keywords.map((keyword, index) => (
-              <div key={index} style={{
-                fontSize: '14px',
-                lineHeight: '1.6',
-                color: '#424245',
-                padding: '12px',
-                background: 'white',
-                borderRadius: '8px',
-                border: '1px solid #e5e5e7'
-              }}>
-                {keyword}
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   )
