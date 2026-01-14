@@ -3,6 +3,7 @@ import { Locale } from '@/i18n/config'
 import { getImages } from '@/lib/supabase-server'
 import ImageCard from '@/components/ImageCard'
 import { getDictionary } from '@/i18n/get-dictionary'
+import GallerySEOContent from '@/components/GallerySEOContent'
 
 // 多语言翻译配置
 const galleryTranslations: Record<string, {
@@ -237,6 +238,9 @@ export default async function GalleryPage({
             {t.backButton}
           </a>
         </div>
+
+        {/* SEO内容 */}
+        <GallerySEOContent lang={params.lang} imageCount={images.length} />
       </div>
     </>
   )

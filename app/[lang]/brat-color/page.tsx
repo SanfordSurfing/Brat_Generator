@@ -1,6 +1,7 @@
 import { getDictionary } from '@/i18n/get-dictionary'
 import { Locale } from '@/i18n/config'
 import { Metadata } from 'next'
+import BratColorSEOContent from '@/components/BratColorSEOContent'
 
 // 生成页面元数据（SEO）
 export async function generateMetadata({ 
@@ -257,8 +258,11 @@ export default async function BratColorPage({
         </div>
       </div>
 
+      {/* SEO内容 */}
+      <BratColorSEOContent lang={params.lang} />
+
       {/* 返回首页按钮 */}
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: 'center', marginTop: '32px' }}>
         <a 
           href={`/${params.lang}`}
           style={{

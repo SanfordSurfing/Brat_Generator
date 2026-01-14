@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { Locale, locales } from '@/i18n/config'
 import { getImageById, getRecentImageIds } from '@/lib/supabase-server'
 import LikeButton from '@/components/LikeButton'
+import ImageDetailSEOContent from '@/components/ImageDetailSEOContent'
 
 // 生成静态路径（ISR）
 // 为最近的 100 张图片生成静态页面
@@ -230,12 +231,20 @@ export default async function ImageDetailPage({
           />
         </div>
 
+        {/* SEO内容 */}
+        <ImageDetailSEOContent 
+          lang={params.lang} 
+          imageText={image.text} 
+          createdAt={image.created_at}
+        />
+
         {/* 返回按钮 */}
         <div style={{
           display: 'flex',
           gap: '16px',
           justifyContent: 'center',
-          flexWrap: 'wrap'
+          flexWrap: 'wrap',
+          marginTop: '32px'
         }}>
           <a 
             href={`/${params.lang}/gallery`}
