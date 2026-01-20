@@ -46,7 +46,7 @@ export const config = {
   // - sitemap.xml（站点地图）
   // - robots.txt（爬虫规则）
   matcher: [
-    '/((?!api|_next/static|_next/image|favicon|icon|apple-icon|opengraph-image|.*\\.(svg|ico|png|jpg|jpeg|gif|webp)|sitemap\\.xml|robots\\.txt).*)'
+    '/((?!api|_next/static|_next/image|favicon|icon|apple-icon|opengraph-image|.*\\.(?:svg|ico|png|jpg|jpeg|gif|webp)|sitemap\\.xml|robots\\.txt).*)'
   ]
 }
 
