@@ -41,10 +41,13 @@ export const config = {
   // - api 路由
   // - _next/static（静态文件）
   // - _next/image（图片优化）
-  // - favicon.ico（网站图标）
+  // - favicon、icon、apple-icon等图标文件
+  // - 所有图片格式（svg、ico、png、jpg等）
   // - sitemap.xml（站点地图）
   // - robots.txt（爬虫规则）
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)']
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon|icon|apple-icon|opengraph-image|.*\\.(svg|ico|png|jpg|jpeg|gif|webp)|sitemap\\.xml|robots\\.txt).*)'
+  ]
 }
 
 
