@@ -65,6 +65,10 @@ export async function generateMetadata({
       title: dict.meta.title,
       description: dict.meta.description,
       images: ['/opengraph-image.svg'],
+    },
+    // Google AdSense 网站所有权验证
+    other: {
+      'google-adsense-account': 'ca-pub-3801045913410277',
     }
   }
 }
