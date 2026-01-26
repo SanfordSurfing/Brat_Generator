@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
 import { getDictionary } from '@/i18n/get-dictionary'
 import { languageCodes, type Language } from '@/i18n/config'
 import Navigation from '@/components/Navigation'
@@ -118,6 +119,20 @@ export default function RootLayout({
         }} />
       </head>
       <body style={{ margin: 0, padding: 0 }}>
+        {/* Google Analytics (gtag.js) - 异步加载，不阻塞页面渲染 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-YWWZPS7VKJ"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-YWWZPS7VKJ');
+          `}
+        </Script>
+
         {/* 全局顶部导航栏 */}
         <Navigation lang={params.lang} />
         
