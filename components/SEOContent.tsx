@@ -7,10 +7,10 @@ type SEOContentProps = {
 
 // 完整的多语言翻译配置
 const translations: Record<string, {
-  section1: { title: string; para1: string; para2: string }
+  section1: { title: string; para1: string; para2: string; para3?: string }
   section2: { title: string; para: string; features: string[] }
-  section3: { title: string; para1: string; para2: string }
-  section4: { title: string; para1: string; para2: string }
+  section3: { title: string; para1: string; para2: string; para3?: string }
+  section4: { title: string; para1: string; para2: string; para3?: string }
   section5: { title: string; para: string; steps: string[] }
   section6: { title: string; para: string; useCases: Array<{title: string; desc: string}> }
 }> = {
@@ -83,67 +83,72 @@ const translations: Record<string, {
   },
   en: {
     section1: {
-      title: 'What is Brat Text Generator?',
-      para1: 'Brat Text Generator is a free online brat font generator designed to create Charli XCX "Brat" album-style images. As the most popular brat meme generator, our brat maker perfectly recreates the iconic Brat green (#8ACE00) and Arial Narrow font style. Whether you want to create brat lyrics, brat meme, or text meme, this brat album generator has you covered.',
-      para2: 'As a completely free brat generator free tool, our brat lyric generator supports quick generation of Charli XCX-style text images. Simply type in the brat text input box, and our charli xcx text generator will automatically generate professional brat album cover with smart wrapping and font sizing. Whether it\'s a brat word generator, brat cover generator, or brat image generator, all features are ready for you.'
+      title: 'What is Brat Generator?',
+      para1: 'Brat Generator is the premier free online tool for creating authentic Brat-style images. This powerful brat text generator helps you design stunning graphics inspired by the viral Brat aesthetic, featuring the iconic lime green color (#8ACE00) and distinctive Arial Narrow typography. Whether you\'re a content creator, meme enthusiast, or design professional, our brat generator provides everything you need to bring your creative vision to life.',
+      para2: 'Our brat font generator stands out as the most authentic and user-friendly brat text generator available online. Unlike other generic text generators, this specialized brat generator focuses exclusively on recreating the signature Brat visual style with pixel-perfect accuracy. The tool functions as both a brat text generator and a complete design solution, allowing you to generate professional-quality images in seconds without any design experience required.',
+      para3: 'The brat generator has become the go-to resource for thousands of creators worldwide who want to capture the essence of Brat culture. As a completely free brat text generator, we believe creative tools should be accessible to everyone. Our bratgenerator technology processes your input instantly, delivering high-resolution outputs perfect for social media, merchandise, wallpapers, and more.'
     },
     section2: {
-      title: 'Brat Meme Generator Core Features',
-      para: 'Our brat text maker and meme text generator provide professional meme font generator capabilities to make your brat typing creation process easier:',
+      title: 'Why This Brat Text Generator Leads the Market',
+      para: 'Our brat generator distinguishes itself through superior features and unmatched authenticity. Here\'s what makes this brat text generator the preferred choice:',
       features: [
-        'Brat Font Generator: Perfectly recreates charli xcx brat font using official Arial Narrow font and brat album font parameters, answering what font is brat perfectly',
-        'Brat Lyric Generator: Professional lyrics brat and brat lyrics generator features for creating brat subtitles and lyric-style images, perfect for charli xcx lyrics website needs',
-        'Meme Text Generator: Powerful meme text and text meme generation with all meme generator fonts and meme creator app core features',
-        'Brat Template: Provides brat template and brat cover templates for one-click brat album cover generator style brat logo images',
-        'Brat Color: Uses official brat color #8ACE00 to ensure brat wallpaper, brat letter, and all brat memes maintain consistent style'
+        'Authentic Brat Font Generator: Our brat font generator uses the exact Arial Narrow Bold typeface to ensure your text matches the original aesthetic perfectly. This brat text generator automatically applies proper letter spacing and weight.',
+        'Instant Preview: Unlike other brat generator tools, ours provides real-time preview so you can see exactly how your brat text generator output will look before downloading.',
+        'Smart Text Optimization: The brat generator automatically adjusts font size based on your text length, ensuring optimal readability whether you input three words or three paragraphs.',
+        'True Brat Color: This brat text generator uses the official #8ACE00 color code, guaranteeing authentic results that match the iconic Brat green.',
+        'High-Resolution Export: Our brat generator produces crisp, high-quality images suitable for both digital use and print applications up to poster size.'
       ]
     },
     section3: {
-      title: 'Why Choose This Brat Generator?',
-      para1: 'As the leading charli xcx brat generator and brat simulator, we provide the most complete brat generation experience. Whether you search for brat generator com, free brat generator, brats generator, or brat generater, our brat generator charli xcx tool offers the best brat typer functionality.',
-      para2: 'This charli xcx generator and charli xcx font tool is completely free with no registration required. As a professional brat charli xcx font and charli xcx text generator, our brat text font and brat text maker support creating brat shirt designs, brat website materials, and charli xcx typing content. Whether you need a charli xcx lyric maker, brat type tool, or charli xcx meme generator, this is your best choice.'
+      title: 'How to Use the Brat Text Generator',
+      para1: 'Getting started with our brat generator is incredibly simple. This brat text generator was designed with user experience as the top priority, ensuring anyone can create professional results regardless of technical skill level. The intuitive interface of our brat font generator makes the creative process smooth and enjoyable.',
+      para2: 'To use the brat generator, simply type your desired text into the input field. As you type, the brat text generator instantly displays a preview of your design. You can experiment with different phrases to see how they look with the distinctive Brat styling. When satisfied with your creation, click the download button and your brat generator output will be saved as a high-quality image file ready for immediate use.',
+      para3: 'The brat text generator supports text of any length, from short phrases to longer messages. Our brat generator intelligently handles line breaks and text wrapping to maintain the aesthetic integrity of your design. Many users keep our brat font generator bookmarked for quick access whenever inspiration strikes.'
     },
     section4: {
-      title: 'Brat Meme & Pop Culture',
-      para1: 'Charli XCX\'s Brat album pioneered a new brat generation cultural trend. From brat memes to brat shirt, from brat wallpaper to brat logo, Brat aesthetics have permeated every corner of internet culture. This iconic fluorescent green brat color and clean brat album font represent a bold, confident way of expression.',
-      para2: 'Using our brat meme generator and meme text generator, you can easily create your own text meme and brat memes. Whether making brat lyrics, brat subtitles, or charli xcx meme, our meme font generator and brat text generator help you realize creativity and make your brat typing work stand out on social media.'
+      title: 'Creative Applications for Your Brat Generator',
+      para1: 'The versatility of our brat text generator opens up countless creative possibilities. Content creators use this brat generator to produce eye-catching social media posts that stop scrollers in their tracks. The distinctive visual style created by our brat font generator immediately signals cultural awareness and trendy aesthetics to viewers.',
+      para2: 'Merchandise designers rely on our brat generator for creating custom apparel designs. From t-shirts to hoodies, tote bags to phone cases, the brat text generator output works beautifully across all print-on-demand platforms. The high contrast between the bright green background and bold black text created by our brat font generator ensures excellent printability on various materials and colors.',
+      para3: 'Digital artists and designers incorporate elements created with our brat generator into larger compositions. The brat text generator serves as a starting point for album artwork, event posters, promotional graphics, and brand identity projects. Many designers keep our brat generator in their toolkit alongside professional design software.'
     },
     section5: {
-      title: 'How to Use Brat Text Generator',
-      para: 'Using this brat font generator and meme creator app is simple - just three steps to complete your brat album generator creation:',
+      title: 'Brat Generator for Social Media Success',
+      para: 'Social media success in today\'s landscape requires eye-catching visuals that communicate instantly. Our brat text generator helps you create scroll-stopping content optimized for every major platform:',
       steps: [
-        'Enter text in the brat text input box: Our brat word generator supports text of any length, and brat lyric generator automatically handles line breaks',
-        'Preview your brat cover in real-time: Check your brat template effects in the brat simulator, ensuring perfect brat color and brat letter layout',
-        'Download or share: Save high-quality images from brat image generator with one click, or upload to Gallery community to let more people appreciate your brat maker work'
+        'Instagram & TikTok: Use the brat generator to create bold Story graphics and feed posts. The high-contrast output from our brat text generator performs exceptionally well in mobile feeds.',
+        'Twitter/X: Stand out in crowded timelines with distinctive images from our brat font generator. The instantly recognizable Brat aesthetic created by this brat generator signals cultural relevance.',
+        'Discord & Telegram: Create custom emojis, stickers, and reaction images using our brat text generator. Community members will love unique assets generated by our brat generator.',
+        'YouTube & Twitch: Design compelling thumbnails with our brat font generator. The bold typography produced by this brat text generator drives higher click-through rates.',
+        'Profile Pictures: Transform your online presence with avatars created using our brat generator. Stand out across all platforms with consistent branding from our brat text generator.'
       ]
     },
     section6: {
-      title: 'Brat Text Generator Creative Use Cases',
-      para: 'Our brat meme generator and brat text maker can be applied to various creative scenarios. From brat shirt design to brat wallpaper creation, this meme text generator and charli xcx font tool meets all your needs:',
+      title: 'Brat Text Generator Advanced Tips',
+      para: 'Maximize the potential of our brat generator with these professional techniques. Experienced users have discovered numerous ways to enhance their brat text generator workflow:',
       useCases: [
         {
-          title: 'Brat Meme & Text Meme Creation',
-          desc: 'Use brat meme generator and meme font generator to quickly create viral brat memes. Our meme text generator and meme creator app features let you easily craft text meme to share your charli xcx meme and brat lyric content on Twitter, Instagram, and TikTok.'
+          title: 'Perfect Text Length for Brat Generator',
+          desc: 'The brat text generator works best with concise, impactful phrases. While our brat generator handles long text, keeping messages under 20 words creates the most visually striking results. Experiment with different lengths in the brat font generator to find your ideal balance between message and aesthetics.'
         },
         {
-          title: 'Brat Shirt & Apparel Design',
-          desc: 'Create unique brat shirt designs with brat text generator. Print brat logo and brat template images generated by brat font generator onto T-shirts and hoodies to make exclusive Charli XCX brat font style apparel. This brat maker is the perfect tool for DIY brat shirt.'
+          title: 'Brat Generator for Meme Creation',
+          desc: 'Meme creators love our brat text generator for its ability to deliver instant cultural relevance. The brat generator format has become synonymous with internet humor and viral content. Use our brat font generator to craft memes that resonate with audiences who appreciate the distinctive Brat aesthetic.'
         },
         {
-          title: 'Brat Wallpaper Design',
-          desc: 'Use brat image generator to create personalized brat wallpaper. Our brat cover generator can produce high-quality brat color backgrounds perfect for phone and computer wallpapers. Let brat album cover style brat letter decorate your device screens.'
+          title: 'Professional Design with Brat Text Generator',
+          desc: 'Professional designers integrate our brat generator output into comprehensive brand campaigns. The brat text generator serves as a bridge between underground internet culture and mainstream design trends. Export high-resolution files from our brat font generator for use in professional print and digital projects.'
         },
         {
-          title: 'Brat Lyrics & Music Content',
-          desc: 'As a professional brat lyrics generator, our tool is the ideal complement to charli xcx lyrics website. Use brat lyric generator to create lyrics brat style lyric posters, brat subtitles caption images, or add visual impact to charli xcx lyric maker content.'
+          title: 'Brat Generator for Event Promotion',
+          desc: 'Event organizers use our brat text generator to create promotional materials that capture attention. Party flyers, concert announcements, and club promotions benefit from the bold style produced by our brat generator. The brat font generator aesthetic communicates energy, youth culture, and contemporary relevance.'
         },
         {
-          title: 'Social Media Materials',
-          desc: 'Use charli xcx text generator and brat typing tools to create Instagram stories, Twitter avatars, and Discord emotes. This charli xcx generator and brat text font tool generates brat website materials suitable for various social platforms.'
+          title: 'Custom Wallpapers Using Brat Generator',
+          desc: 'Transform your devices with personalized wallpapers created using our brat text generator. Generate motivational quotes, personal mantras, or inside jokes with our brat font generator. The vibrant green background from our brat generator adds personality to any screen while maintaining excellent visibility.'
         },
         {
-          title: 'Brat Template & Brand Design',
-          desc: 'Use brat template and brat album generator for brand design inspiration. Our free brat generator provides brat generater features suitable for creating posters, flyers, and brand materials, integrating brat generation aesthetics into your design projects.'
+          title: 'Brat Text Generator for Brands',
+          desc: 'Forward-thinking brands leverage our brat generator to connect with younger demographics. The brat text generator aesthetic signals cultural awareness and internet fluency. Use our brat font generator to create marketing materials that speak the visual language of contemporary online culture.'
         }
       ]
     }
@@ -378,11 +383,16 @@ export default function SEOContent({ lang }: SEOContentProps) {
         <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#1d1d1f', marginBottom: '16px' }}>
           {t.section1.para2}
         </p>
+        {t.section1.para3 && (
+          <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#1d1d1f', marginBottom: '16px' }}>
+            {t.section1.para3}
+          </p>
+        )}
 
         {/* Section 2: 核心功能特点 */}
-        <h3 style={{ fontSize: '24px', fontWeight: '600', marginTop: '32px', marginBottom: '16px', color: '#1d1d1f' }}>
+        <h2 style={{ fontSize: '28px', fontWeight: '700', marginTop: '48px', marginBottom: '24px', color: '#1d1d1f' }}>
           {t.section2.title}
-        </h3>
+        </h2>
         <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#1d1d1f', marginBottom: '12px' }}>
           {t.section2.para}
         </p>
@@ -395,31 +405,41 @@ export default function SEOContent({ lang }: SEOContentProps) {
         </ul>
 
         {/* Section 3: 为什么选择 Brat Generator */}
-        <h3 style={{ fontSize: '24px', fontWeight: '600', marginTop: '32px', marginBottom: '16px', color: '#1d1d1f' }}>
+        <h2 style={{ fontSize: '28px', fontWeight: '700', marginTop: '48px', marginBottom: '24px', color: '#1d1d1f' }}>
           {t.section3.title}
-        </h3>
+        </h2>
         <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#1d1d1f', marginBottom: '16px' }}>
           {t.section3.para1}
         </p>
         <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#1d1d1f', marginBottom: '16px' }}>
           {t.section3.para2}
         </p>
+        {t.section3.para3 && (
+          <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#1d1d1f', marginBottom: '16px' }}>
+            {t.section3.para3}
+          </p>
+        )}
 
         {/* Section 4: Brat 文化现象 */}
-        <h3 style={{ fontSize: '24px', fontWeight: '600', marginTop: '32px', marginBottom: '16px', color: '#1d1d1f' }}>
+        <h2 style={{ fontSize: '28px', fontWeight: '700', marginTop: '48px', marginBottom: '24px', color: '#1d1d1f' }}>
           {t.section4.title}
-        </h3>
+        </h2>
         <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#1d1d1f', marginBottom: '16px' }}>
           {t.section4.para1}
         </p>
         <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#1d1d1f', marginBottom: '16px' }}>
           {t.section4.para2}
         </p>
+        {t.section4.para3 && (
+          <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#1d1d1f', marginBottom: '16px' }}>
+            {t.section4.para3}
+          </p>
+        )}
 
         {/* Section 5: 如何使用 */}
-        <h3 style={{ fontSize: '24px', fontWeight: '600', marginTop: '32px', marginBottom: '16px', color: '#1d1d1f' }}>
+        <h2 style={{ fontSize: '28px', fontWeight: '700', marginTop: '48px', marginBottom: '24px', color: '#1d1d1f' }}>
           {t.section5.title}
-        </h3>
+        </h2>
         <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#1d1d1f', marginBottom: '12px' }}>
           {t.section5.para}
         </p>
@@ -432,9 +452,9 @@ export default function SEOContent({ lang }: SEOContentProps) {
         </ol>
 
         {/* Section 6: 应用场景 */}
-        <h3 style={{ fontSize: '24px', fontWeight: '600', marginTop: '32px', marginBottom: '16px', color: '#1d1d1f' }}>
+        <h2 style={{ fontSize: '28px', fontWeight: '700', marginTop: '48px', marginBottom: '24px', color: '#1d1d1f' }}>
           {t.section6.title}
-        </h3>
+        </h2>
         <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#1d1d1f', marginBottom: '24px' }}>
           {t.section6.para}
         </p>
@@ -449,9 +469,9 @@ export default function SEOContent({ lang }: SEOContentProps) {
                 border: '1px solid #e5e5e7'
               }}
             >
-              <h4 style={{ fontSize: '19px', fontWeight: '600', marginBottom: '8px', color: '#1d1d1f' }}>
+              <h3 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '8px', color: '#1d1d1f' }}>
                 {useCase.title}
-              </h4>
+              </h3>
               <p style={{ fontSize: '16px', lineHeight: '1.6', color: '#424245', margin: 0 }}>
                 {useCase.desc}
               </p>
