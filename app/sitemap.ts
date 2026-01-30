@@ -1,6 +1,5 @@
 import { MetadataRoute } from 'next'
 import { locales } from '@/i18n/config'
-import { getImages } from '@/lib/supabase-server'
 
 // 动态生成 sitemap.xml
 // 设置重新验证时间：每5分钟更新一次
@@ -14,13 +13,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 当前时间
   const now = new Date()
   
-  // 定义静态页面路径
+  // 定义静态页面路径（仅包含SEO目标页面）
   const staticRoutes = [
     '',  // 首页
     '/brat-color',  // Brat Color 页面
-    '/gallery',  // Gallery 页面
-    '/privacy',  // 隐私政策
-    '/cookies',  // Cookies 政策
+    '/gallery',  // Gallery 列表页
+    // '/privacy' 和 '/cookies' 已移除 - 这些页面设置为 noindex
   ]
   
   // 生成静态页面的 sitemap 条目
@@ -37,24 +35,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
   
-  // 🔥 动态获取所有图片，生成图片详情页的 sitemap 条目
-  const images = await getImages()
-  const imageEntries: MetadataRoute.Sitemap = []
+  // 动态图片页面已从 sitemap 中移除
+  // 原因：作品详情页设置为 noindex，只保留精品SEO页面在sitemap中
+  // 用户仍可通过 Gallery 列表页或直接链接访问作品页
   
-  for (const locale of locales) {
-    for (const image of images) {
-      imageEntries.push({
-        url: `${baseUrl}/${locale}/gallery/${image.id}`,
-        lastModified: new Date(image.created_at),
-        changeFrequency: 'weekly',
-        priority: 0.7,
-      })
-    }
-  }
+  console.log(`📍 Sitemap generated: ${staticEntries.length} SEO pages across ${locales.length} languages`)
   
-  console.log(`📍 Sitemap generated: ${staticEntries.length} static pages + ${imageEntries.length} image pages = ${staticEntries.length + imageEntries.length} total URLs`)
-  
-  // 合并静态页面和动态图片页面
-  return [...staticEntries, ...imageEntries]
+  // 只返回静态SEO页面
+  return staticEntries
 }
 

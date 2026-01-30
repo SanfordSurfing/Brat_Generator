@@ -11,7 +11,10 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: '/',
         disallow: [
-          '/api/',  // 禁止爬取 API 路由
+          '/api/',           // 禁止爬取 API 路由
+          '/*/privacy',      // 禁止爬取所有语言的隐私政策页
+          '/*/cookies',      // 禁止爬取所有语言的Cookies政策页
+          '/*/gallery/*/',   // 禁止爬取所有作品详情页（注意末尾斜杠，不影响/gallery列表页）
         ]
       }
     ],

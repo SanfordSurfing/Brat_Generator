@@ -82,6 +82,12 @@ export async function generateMetadata({
       title,
       description,
       images: [image.image_url],
+    },
+    // 禁止搜索引擎索引作品详情页（仅保留精品SEO页面参与排名）
+    // 但允许跟随链接以传递权重到Gallery列表页和首页
+    robots: {
+      index: false,
+      follow: true,
     }
   }
 }

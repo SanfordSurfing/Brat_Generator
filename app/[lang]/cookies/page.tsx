@@ -21,6 +21,11 @@ export async function generateMetadata({
         'en': '/en/cookies',
         'zh': '/zh/cookies',
       }
+    },
+    // 禁止搜索引擎索引此页面（Cookies政策为功能性页面，非SEO目标页面）
+    robots: {
+      index: false,
+      follow: false,
     }
   }
 }
